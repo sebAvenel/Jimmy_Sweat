@@ -2,5 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/doctrine/data-fixtures" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/fzaninotto/faker" vcs="Git" />
   </component>
 </project>
