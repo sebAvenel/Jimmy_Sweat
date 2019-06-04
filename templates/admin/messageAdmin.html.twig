@@ -1,0 +1,59 @@
+{% extends 'admin/adminLayout.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/admin/messagesAdmin.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="accordion" id="accordionExample">
+            {% for trick in trickList %}
+                <div class="card">
+                    <div class="card-header" id="heading{{ trick.id }}">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ trick.id }}" aria-expanded="true" aria-controls="collapseOne">
+                                    {{ trick.name }}
+                                </button>
+                            </div>
+                            <div class="col-lg-5">
+                                <h6 id="creationDate">Créé le {{ trick.createdAt|date('Y-m-d à H:i:s') }} par {{ trick.user.name }}</h6>
+                            </div>
+                            <div class="col-lg-5">
+                                <h6 id="creationDate">Dernière modification le {{ trick.updatedAt|date('Y-m-d à H:i:s') }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="collapse{{ trick.id }}" class="collapse" aria-labelledby="heading{{ trick.id }}" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <h5>Description de la figure:</h5>
+                            <div id="description">{{ trick.description }}</div>
+                            <hr>
+                            {% for message in invalidMessageList %}
+                                {% if message.trickId.id == trick.id %}
+                                    <h5>Message {{ message.id }} :</h5>
+                                    <div id="messageInformations">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <h6>Créer le {{ message.createdAt|date('Y-m-d à H:i:s') }}</h6>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <h6>Dernière modification le {{ message.updatedAt|date('Y-m-d à H:i:s') }}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="messageContent">{{ message.content }}</div>
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <input type=button onclick=window.location.href='{{ path('update_validated_message', {id: message.id}) }}'; value="Valider" class="btn btn-success"/>
+                                        <input type=button onclick=window.location.href='{{ path('delete_message', {id: message.id}) }}'; value="Supprimer" class="btn btn-danger"/>
+                                    </div>
+                                    <hr>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

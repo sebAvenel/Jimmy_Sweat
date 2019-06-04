@@ -19,6 +19,17 @@ class MessageRepository extends ServiceEntityRepository
         parent::__construct($registry, Message::class);
     }
 
+    /**
+     * @return Message[]
+     */
+    public function findInvalid(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.validated = 0')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Message[] Returns an array of Message objects
     //  */

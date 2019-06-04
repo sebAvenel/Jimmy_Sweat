@@ -5,5 +5,24 @@
     <mapping directory="$PROJECT_DIR$/vendor/doctrine/data-fixtures" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/fzaninotto/faker" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/sensio/framework-extra-bundle" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/asset" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/dotenv" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/form" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/inflector" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/intl" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/options-resolver" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/polyfill-intl-icu" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/polyfill-php72" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/profiler-pack" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/property-access" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/routing" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/security-core" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/security-csrf" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/twig-bridge" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/twig-bundle" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/var-dumper" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/web-profiler-bundle" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/twig/twig" vcs="Git" />
   </component>
 </project>

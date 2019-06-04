@@ -1,0 +1,23 @@
+.jumbotron{
+    position: relative;
+    overflow: hidden;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    line-height: 0px;
+}
+
+.navbar{
+    background-color: transparent;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+a{
+    color: white;
+}
+
+video {
+    width: 100%;
+}

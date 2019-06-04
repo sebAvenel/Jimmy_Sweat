@@ -1,0 +1,85 @@
+body{
+    background-color: #DFE2E5;
+}
+a:hover, a:focus{
+    text-decoration:none
+}
+nav ul,nav li{
+    padding:0;
+}
+nav.main-menu{
+    position: absolute;
+    position: fixed;
+    height: 100%;
+    margin-bottom: 0;
+    width: 60px;
+    overflow: hidden;
+    transition: width .30s linear;
+    background: whitesmoke;
+    padding-top: 150px;
+}
+nav.main-menu>ul.logout{
+    position:absolute;
+    bottom:0;
+}
+nav.main-menu li{
+    position:relative;
+    width:250px
+}
+nav.main-menu li>a{
+    display: table;
+    color: #fff;
+}
+nav.main-menu li ul{
+    position: absolute;
+    background: deepskyblue;
+    top: 0;
+    right: -210px;
+    width: 0;
+    overflow: hidden;
+    transition: width 0s .5s linear;
+}
+nav.main-menu li li>a{
+    width: 210px;
+    padding: .7em 0;
+}
+nav.main-menu li li .subnav-text{
+    padding-left:20px;
+}
+.no-touch nav.main-menu li:hover>a,nav.main-menu li.active>a{
+    background-color:#BCC5CD;
+}
+.no-touch nav.main-menu li:hover ul,nav.main-menu li.active ul{
+    width:210px
+}
+nav.main-menu .nav-icon, .fa, .fas, .far{
+    width:60px;
+    text-align:center;
+    vertical-align:middle;
+    font-size:18px;
+    padding:.7em 0;
+    color: #75797D;
+}
+nav.main-menu .nav-text{
+    display: table-cell;
+    width: 190px;
+    visibility: hidden;
+    padding: .7em 0;
+    color: black;
+}
+nav.main-menu:hover,nav.main-menu.expanded{
+    width:250px;
+    overflow:visible
+}
+nav.main-menu:hover .nav-text,nav.main-menu.expanded .nav-text{
+    visibility:visible
+}
+#header{
+    width: 100%;
+    position: fixed;
+    text-align: center;
+    background-color: whitesmoke;
+    color: black;
+    padding: 20px;
+}
+

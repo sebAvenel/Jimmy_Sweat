@@ -19,7 +19,7 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      */
     private $avatar;
 
@@ -54,12 +54,12 @@ class User
     private $activated;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Trick", mappedBy="User_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Trick", mappedBy="user", cascade={"remove"})
      */
     private $tricks;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="User_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="user", cascade={"remove"})
      */
     private $messages;
 

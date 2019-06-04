@@ -17,7 +17,7 @@ class VideoFixture extends Fixture implements DependentFixtureInterface
             $video = new Video();
             $video
                 ->setCode($faker->url)
-                ->setTrick($this->getReference('trick-' . rand(0, 99)));
+                ->setTrick($this->getReference('trick-' . rand(0, 9)));
             $manager->persist($video);
         }
         // $product = new Product();

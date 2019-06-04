@@ -1,0 +1,41 @@
+{% extends 'admin/adminLayout.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/admin/tricksAdmin.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="accordion" id="accordionExample">
+            {% for trick in invalidTrickList %}
+            <div class="card">
+                <div class="card-header" id="heading{{ trick.id }}">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ trick.id }}" aria-expanded="true" aria-controls="collapseOne">
+                                {{ trick.name }}
+                            </button>
+                        </div>
+                        <div class="col-lg-5">
+                            <h6 id="creationDate">Créé le {{ trick.createdAt|date('d-m-Y à H:i:s') }} par {{ trick.user.name }}</h6>
+                        </div>
+                        <div class="col-lg-5">
+                            <h6 id="creationDate">Dernière modification le {{ trick.updatedAt|date('d-m-Y à H:i:s') }}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div id="collapse{{ trick.id }}" class="collapse" aria-labelledby="heading{{ trick.id }}" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <h5>Description:</h5>
+                        <div id="description">{{ trick.description }}</div>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <input type=button onclick=window.location.href='{{ path('update_validated_trick', {id: trick.id}) }}'; value="Valider" class="btn btn-success"/>
+                            <input type=button onclick=window.location.href='{{ path('delete_trick', {id: trick.id}) }}'; value="Supprimer" class="btn btn-danger"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

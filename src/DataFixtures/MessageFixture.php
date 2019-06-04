@@ -16,11 +16,11 @@ class MessageFixture extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < 100; $i++) {
             $message = new Message();
             $message
-                ->setContent($faker->word(50, true))
+                ->setContent($faker->words(50, true))
                 ->setCreatedAt($faker->dateTime('now', null))
                 ->setUpdatedAt($faker->dateTime('now', null))
                 ->setValidated(rand(0, 1))
-                ->setTrick($this->getReference('trick-' . rand(0, 99)))
+                ->setTrick($this->getReference('trick-' . rand(0, 9)))
                 ->setUser($this->getReference('user-' . rand(0,99)));
             $manager->persist($message);
         }

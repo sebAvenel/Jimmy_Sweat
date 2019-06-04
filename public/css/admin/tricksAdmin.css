@@ -1,0 +1,36 @@
+.container{
+    text-align: center;
+    padding: 20px;
+    color: white;
+}
+.accordion{
+    margin-bottom: 50px;
+    margin-top: 150px;
+}
+.card{
+    text-align: left;
+    color: black;
+}
+#description{
+    margin-left: 30px;
+    text-align: justify;
+}
+.btn-link{
+    text-decoration: none;
+    color: deepskyblue;
+    font-size: large;
+    font-weight: bold;
+    padding: 0 0 0 10px;
+}
+.btn-link:hover{
+    text-decoration: none;
+    color: red;
+}
+.btn-group-toggle{
+    margin-top: 20px;
+    text-align: center;
+    display: inherit;
+}
+.fa-snowboarding{
+    color: red;
+}
