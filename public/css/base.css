@@ -1,0 +1,23 @@
+.navbar{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.nav-link{
+    padding: 0px;
+}
+
+.fa-chevron-circle-down{
+    color: white;
+}
+
+a:hover{
+    color: red;
+}
+
+@media (min-width: 992px) {
+    #homeLink, #signInLink, #tricksLink{
+        border-right: 1px solid white;
+        margin: 0px;
+    }
+}

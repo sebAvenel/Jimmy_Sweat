@@ -24,7 +24,7 @@ class Trick
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $description;
 
@@ -50,17 +50,17 @@ class Trick
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="Trick_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="trick", cascade={"remove"})
      */
     private $messages;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="Trick_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="trick", cascade={"remove"})
      */
     private $images;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Video", mappedBy="Trick_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Video", mappedBy="trick", cascade={"remove"})
      */
     private $videos;
 

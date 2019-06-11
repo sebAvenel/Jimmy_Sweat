@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/homePage.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="jumbotron jumbotron-fluid">
+        <video autoplay loop muted preload="auto">
+            <source src="{{ asset('videos/headerHomepage.mp4') }}" type="video/mp4">
+        </video>
+    </div>
+{% endblock %}

@@ -19,6 +19,19 @@ class TrickRepository extends ServiceEntityRepository
         parent::__construct($registry, Trick::class);
     }
 
+    /**
+     * @return Trick[]
+     */
+    public function findInvalid(): array
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.validated = 0')
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
     // /**
     //  * @return Trick[] Returns an array of Trick objects
     //  */

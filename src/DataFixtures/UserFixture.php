@@ -11,6 +11,7 @@ class UserFixture extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+        $userRole = ['user', 'admin'];
         $faker = Factory::create('fr_FR');
         for ($i = 0; $i < 100; $i++){
             $user = new User();
@@ -19,7 +20,7 @@ class UserFixture extends Fixture
                 ->setName($faker->userName)
                 ->setPassword($faker->password)
                 ->setEmail($faker->email)
-                ->setRole($faker->word)
+                ->setRole($userRole[rand(0, 1)])
                 ->setToken($faker->md5)
                 ->setActivated(rand(0, 1));
             $manager->persist($user);
