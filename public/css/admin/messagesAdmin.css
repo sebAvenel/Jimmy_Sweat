@@ -6,6 +6,8 @@
 .accordion{
     margin-bottom: 50px;
     margin-top: 150px;
+    position: inherit;
+    z-index: 0;
 }
 .card{
     text-align: left;

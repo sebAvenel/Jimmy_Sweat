@@ -7,6 +7,16 @@
 {% block body %}
     <div class="container">
         <div class="accordion" id="accordionExample">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('failure') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
             {% for trick in invalidTrickList %}
             <div class="card">
                 <div class="card-header" id="heading{{ trick.id }}">
@@ -30,7 +40,25 @@
                         <div id="description">{{ trick.description }}</div>
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                             <input type=button onclick=window.location.href='{{ path('update_validated_trick', {id: trick.id}) }}'; value="Valider" class="btn btn-success"/>
-                            <input type=button onclick=window.location.href='{{ path('delete_trick', {id: trick.id}) }}'; value="Supprimer" class="btn btn-danger"/>
+                            <input type=button data-toggle="modal" data-target="#deleteTrick{{ trick.id }}" value="Supprimer" class="btn btn-danger"/>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="deleteTrick{{ trick.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <h4>Etes-vous sûr de vouloir supprimer cette figure ?</h4>
+                                    </div>
+                                    <form action="{{ path('delete_trick', {id: trick.id}) }}" method="post">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ trick.id) }}">
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+                                            <button type="submit" class="btn btn-primary">Confirmer</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

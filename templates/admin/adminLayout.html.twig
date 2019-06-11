@@ -13,6 +13,15 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        <div id="header">
+            <h1>Jimmt sweat Admin</h1>
+            {% if app.user %}
+                {% if app.user.avatar == null%}
+                    <img class="rounded-circle" id="avatar" src="{{ asset('images/userAvatarDefault.jpg') }}"/>
+                {% endif %}
+                {{ app.user.name }}
+            {% endif %}
+        </div>
         <nav class="main-menu">
             <ul>
                 <li>
@@ -40,16 +49,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="error.html">
+                    <a href="{{ path('user_logout') }}">
                         <i class="fas fa-sign-out-alt"></i>
                         <span class="nav-text">Se déconnecter</span>
                     </a>
                 </li>
             </ul>
         </nav>
-        <div id="header">
-            <h1>Jimmt sweat Admin</h1>
-        </div>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

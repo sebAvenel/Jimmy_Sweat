@@ -4,8 +4,9 @@
     color: white;
 }
 .accordion{
-    margin-bottom: 50px;
     margin-top: 150px;
+    margin-bottom: 50px;
+    z-index: 0;
 }
 .card{
     text-align: left;

@@ -2,27 +2,51 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/aalaap/faker-youtube" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/doctrine/data-fixtures" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/egulias/email-validator" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/fzaninotto/faker" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/sensio/framework-extra-bundle" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/asset" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/cache" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/config" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/contracts" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/debug" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/dependency-injection" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/dotenv" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/event-dispatcher" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/filesystem" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/finder" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/flex" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/form" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/framework-bundle" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/http-foundation" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/http-kernel" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/inflector" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/intl" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/options-resolver" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/polyfill-intl-icu" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/polyfill-php72" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/profiler-pack" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/property-access" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/routing" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/security-bundle" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/security-core" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/security-csrf" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/security-guard" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/security-http" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/swiftmailer-bundle" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/translation" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/twig-bridge" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/twig-bundle" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/validator" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/var-dumper" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/var-exporter" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/web-profiler-bundle" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/yaml" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/twig/twig" vcs="Git" />
   </component>
 </project>

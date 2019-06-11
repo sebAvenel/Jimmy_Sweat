@@ -10,7 +10,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg">
-            <a class="navbar-brand" href="#">Jimmy Sweat</a>
+            <a class="navbar-brand" href="{{ path('home') }}">Jimmy Sweat</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon">
                             <i class="fas fa-chevron-circle-down"></i>
@@ -19,21 +19,33 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <form>
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item" id="homeLink">
-                            <a class="nav-link" href="#">Accueil</a>
-                        </li>
-                        <li class="nav-item" id="tricksLink">
-                            <a class="nav-link" href="#">Figures</a>
-                        </li>
-                        <li class="nav-item" id="signInLink">
-                            <a class="nav-link" href="#">S'authentifier</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">S'inscrire</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('trick_admin') }}">Admin</a>
-                        </li>
+                        {% if app.user %}
+                            {% if app.user.role == 'user' or app.user.role == 'admin' %}
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {% if app.user.avatar == null%}
+                                            <img class="rounded-circle" id="avatar" src="{{ asset('images/userAvatarDefault.jpg') }}"/>
+                                        {% endif %}
+                                        {{ app.user.name }}
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        {% if app.user.role == 'admin' %}
+                                            <a class="dropdown-item" href="{{ path('trick_admin') }}">Admin</a>
+                                        {% endif %}
+                                        <a class="dropdown-item" href="{{ path('user_logout') }}">Se déconnecter</a>
+                                    </div>
+                                </li>
+                            {% elseif app.user.role == 'validation' %}
+                                 <i class="fas fa-exclamation-circle fa-2x" data-toggle="popover" data-placement="left" data-content="N'oubliez pas de valider votre inscription en cliquant sur le lien de l'email envoyé à {{ app.user.email }} pour avoir accès à des fonctionnalités supplémentaires."></i>
+                            {% endif %}
+                         {% else %}
+                            <li class="nav-item" id="signInLink">
+                                <a class="nav-link" href="{{ path('user_login') }}">Se connecter</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('user_registration') }}">S'inscrire</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </form>
             </div>
@@ -43,5 +55,10 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script>
+            $(function () {
+                $('[data-toggle="popover"]').popover()
+            })
+        </script>
     </body>
 </html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ absolute_url(asset('css/mail/confirmRegistration.css')) }}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <h1>Bienvenue <br> sur <br> jimmysweat.com!</h1>
+        <header>
+            <img src="{{ absolute_url(asset('images/mails/registrationHeader.jpg')) }}">
+        </header>
+        <p>
+            Cher {{ user.name }},<br><br>
+            Merci de vous êtes inscrit sur notre site.<br>
+            Afin de confimer votre inscription, merci de cliquer sur le bouton suivant:<br><br>
+
+            <a href="http://{{ host }}/user/confirmation_registration/{{ user.token }}"><button class="btn btn-primary">Valider mon inscription</button></a><br><br>
+
+            Cordialement,<br>
+            L'équipe de Jimmy sweat.
+        </p>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </body>
+</html>
