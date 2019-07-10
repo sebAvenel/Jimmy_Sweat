@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/user/userLogin.css') }}">
+{% endblock %}
+
+{% block title 'se connecter' %}
+
+{% block body %}
+    <div class="container">
+        <div id="form-content" class="col-lg-4 col-md-8 col-xs-10 offset-lg-4 offset-md-2 offset-xs-1">
+            <h3>Se connecter</h3>
+            {% if error is defined and error != null%}
+                <div class="alert alert-danger">
+                    {{ error.messageKey | trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            {{ form_start(form)}}
+            {{ form_row(form.email, {'full_name': '_username', 'value': last_username }) }}
+            {{ form_row(form.password, {'full_name': '_password'}) }}
+            {{ form_rest(form) }}
+            <button class="btn btn-primary" type="submit">Valider</button>
+            {{ form_end(form) }}
+            <a href="{{ path('forgot_password') }}">Mot de passe oublié?</a>
+        </div>
+    </div>
+{% endblock %}

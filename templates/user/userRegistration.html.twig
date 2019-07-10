@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/user/userRegistration.css') }}">
+{% endblock %}
+
+{% block title "s'inscrire" %}
+
+{% block body %}
+    <div class="container">
+        <div id="form-content" class="col-lg-4 col-md-8 col-xs-10 offset-lg-4 offset-md-2 offset-xs-1">
+            <h3>S'inscrire</h3>
+            {{ form_start(form) }}
+            {{ form_rest(form) }}
+            <button class="btn btn-primary" type="submit">Valider</button>
+            {{ form_end(form) }}
+            <a href="{{ path('user_login') }}">Dèjà inscrit?</a>
+        </div>
+    </div>
+{% endblock %}

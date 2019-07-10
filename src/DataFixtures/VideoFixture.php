@@ -7,16 +7,18 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
+use Faker\Provider\Youtube;
 
 class VideoFixture extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr_FR');
+        $faker->addProvider(new Youtube($faker));
         for ($i = 0; $i < 100; $i++){
             $video = new Video();
             $video
-                ->setCode($faker->url)
+                ->setCode($faker->youtubeUri())
                 ->setTrick($this->getReference('trick-' . rand(0, 9)));
             $manager->persist($video);
         }

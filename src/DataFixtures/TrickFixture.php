@@ -13,7 +13,7 @@ class TrickFixture extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr_FR');
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             $trick = new Trick();
             $trick
                 ->setName($faker->word)

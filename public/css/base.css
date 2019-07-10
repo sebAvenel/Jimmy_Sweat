@@ -21,3 +21,31 @@ a:hover{
         margin: 0px;
     }
 }
+.dropdown-menu{
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.dropdown-menu a{
+    color: white;
+}
+
+.dropdown-menu a:hover{
+    background-color: transparent;
+    color: red;
+}
+
+button:active, button:focus{
+    outline: 0;
+}
+img{
+    width: 35px;
+    height: 35px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 2px solid white;
+}
+.fa-exclamation-circle{
+    color: red;
+    position: absolute;
+}

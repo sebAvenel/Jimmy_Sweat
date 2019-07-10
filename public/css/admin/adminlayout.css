@@ -81,5 +81,18 @@ nav.main-menu:hover .nav-text,nav.main-menu.expanded .nav-text{
     background-color: whitesmoke;
     color: black;
     padding: 20px;
+    z-index: 2;
+}
+
+#header h1{
+    margin-bottom: 20px;
+}
+
+#header img{
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 2px solid white;
 }
 
