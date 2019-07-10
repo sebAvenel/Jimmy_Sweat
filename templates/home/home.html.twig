@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/homePage.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home/home.css') }}">
 {% endblock %}
+
+{% set last_trick_id = '' %}
 
 {% block body %}
     <div class="jumbotron jumbotron-fluid">
@@ -10,4 +12,106 @@
             <source src="{{ asset('videos/headerHomepage.mp4') }}" type="video/mp4">
         </video>
     </div>
+    <div class="container mt-5">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('failure') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="row" id="data_list">
+            {% for trick in trickList %}
+                <div class="col-sm-12 col-md-6 col-lg-3">
+                    <div class="card mb-3">
+                        {% if trick.firstImage != null %}
+                            <img src="{{ asset('/uploads/images/' ~ trick.firstImage) }}">
+                        {% elseif trick.images|length > 0 %}
+                            {% set imagesArray = [] %}
+                            {% for image in trick.images %}
+                                {% set imagesArray = imagesArray|merge([image.name]) %}
+                            {% endfor %}
+                            <img src="{{ asset('/uploads/images/' ~ random(imagesArray)) }}">
+                        {% else %}
+                            <img class="card-img-top" src="{{ asset('images/imgTrickDefault.jpg') }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-8">
+                                    <a href="{{ path('app_trick_show', {id: trick.id}) }}">{{ trick.name }}</a>
+                                </div>
+                                {% if app.user %}
+                                    {% if app.user.activated != 0 %}
+                                        {% if app.user.role == 'admin' or trick.user.id == app.user.id %}
+                                            <div class="col-2">
+                                                <a href="{{ path('app_trick_edit', {id: trick.id }) }}"><i class="fas fa-pencil-alt"></i></a>
+                                            </div>
+                                            <div class="col-2">
+                                                <i class="far fa-trash-alt" data-toggle="modal" data-target="#deleteTrick{{ trick.id }}"></i>
+                                                {#<input type=button data-toggle="modal" data-target="#deleteTrick{{ trick.id }}" value="Supprimer" class="btn btn-danger"/>#}
+                                            </div>
+                                         {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% set last_trick_id = trick.id %}
+                {# Modal delete trick #}
+                <div class="modal fade" id="deleteTrick{{ trick.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <h4>Etes-vous sûr de vouloir supprimer cette figure ?</h4>
+                            </div>
+                            <form action="{{ path('app_trick_delete', {id: trick.id, source: 'home'}) }}" method="post">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ trick.id) }}">
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+                                    <button type="submit" class="btn btn-primary">Confirmer</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div id="remove_row">
+            {% if app.user and (app.user.role == 'user' or app.user.role == 'admin') %}
+                <a href="{{ path('app_trick_create') }}"><button class="btn btn-primary">Ajouter figure <i class="fas fa-plus-circle"></i></button></a>
+            {% endif %}
+            {% if indexSize == 8 %}
+                <button class="btn btn-primary" name="btn_more" id="btn_more" data-id="{{ last_trick_id }}">Afficher plus <i class="fas fa-plus-circle"></i></button>
+            {% endif %}
+        </div>
+    </div>
+    {% block javascripts %}
+        <script>
+            $(document).ready(function () {
+                $(document).on('click', '#btn_more', function () {
+                    $('#btn_more').html('Chargement <div class="spinner-border text-light spinner-border-sm" role="status"><span class="sr-only">Loading...</span></div>');
+                    var last_trick_id = $(this).data("id");
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ path('app_home_showmore') }}",
+                        data: 'last_trick_id=' + last_trick_id,
+                        cache:false,
+                        success: function(data){
+                            $('#btn_more').remove()
+                            $('#data_list').append(data);
+                        },
+                        error: function() {},
+                        complete: function () {
+                            $('#btn_more').html("Afficher plus <i class=\"fas fa-plus-circle\"></i>");
+                        }
+                    });
+                })
+            })
+        </script>
+    {% endblock %}
 {% endblock %}

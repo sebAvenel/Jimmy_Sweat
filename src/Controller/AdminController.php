@@ -5,9 +5,14 @@ namespace App\Controller;
 use App\Repository\MessageRepository;
 use App\Repository\TrickRepository;
 use App\Repository\UserRepository;
-use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class AdminController
+ * @package App\Controller
+ * @Route("/admin")
+ */
 class AdminController extends Controller
 {
     /**
@@ -37,36 +42,32 @@ class AdminController extends Controller
     }
 
     /**
-     * @return Response
-     * @Route("/admin/tricks", name="trick_admin")
+     * @Route("/tricks")
+     * @Template()
      */
-    public function trickAdminPage(): Response
+    public function trick()
     {
-        return $this->render('admin/trickAdmin.html.twig', [
-            'invalidTrickList' => $this->trickRepository->findInvalid()
-        ]);
+        return ['invalidTrickList' => $this->trickRepository->findInvalid()];
     }
 
     /**
-     * @return Response
-     * @Route("/admin/messages", name="message_admin")
+     * @Route("/messages")
+     * @Template()
      */
-    public function messageAdminPage(): Response
+    public function message()
     {
-        return $this->render('admin/messageAdmin.html.twig', [
+        return [
             'trickList' => $this->trickRepository->findAll(),
             'invalidMessageList' => $this->messageRepository->findInvalid()
-        ]);
+        ];
     }
 
     /**
-     * @return Response
-     * @Route("/admin/users", name="user_admin")
+     * @Template()
+     * @Route("/users")
      */
-    public function userAdminPage(): Response
+    public function user()
     {
-        return $this->render('admin/userAdmin.html.twig', [
-            'userList' => $this->userRepository->findAll()
-        ]);
+        return ['userList' => $this->userRepository->findAll()];
     }
 }

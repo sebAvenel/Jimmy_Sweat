@@ -30,6 +30,17 @@ class TrickRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function showMore($id)
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.id < ' . $id)
+            ->orderBy('t.id', 'DESC')
+            ->setMaxResults(8)
+            ->getQuery()
+            ->getResult()
+         ;
+    }
+
 
 
     // /**

@@ -1,0 +1,155 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/trick/show.css') }}">
+{% endblock %}
+
+{% set last_message_id = '' %}
+
+{% set nb_valid_message = 0 %}
+
+{% block body %}
+    <div class="container mt-5">
+        <header>
+            <h1 id="trickName">
+                {{ trick.name }}
+            </h1>
+            {% if trick.firstImage != null %}
+                <img src="{{ asset('/uploads/images/' ~ trick.firstImage) }}">
+            {% elseif trick.images|length > 0 %}
+                {% set imagesArray = [] %}
+                {% for image in trick.images %}
+                    {% set imagesArray = imagesArray|merge([image.name]) %}
+                {% endfor %}
+                <img src="{{ asset('/uploads/images/' ~ random(imagesArray)) }}">
+            {% else %}
+                <img class="card-img-top" src="{{ asset('images/imgTrickDefault.jpg') }}">
+            {% endif %}
+        </header>
+        <div id="gallery">
+            <div class="row">
+                {% for image in trick.images %}
+                    <div class="col-lg-2">
+                        <a href="{{ asset('/uploads/images/' ~ image.name) }}" class="thumbnail" target="_blank">
+                            <img src="{{ asset('/uploads/images/' ~ image.name) }}">
+                        </a>
+                    </div>
+                {% endfor %}
+                {% for video in trick.videos %}
+                    <div class="col-lg-2">
+                        {{ video.code|raw }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div id="description">
+            <h2>Description</h2>
+            {{ trick.description }}
+        </div>
+        <div id="infos">
+            <div class="row">
+                <div class="col-md-6">
+                    Créé par {{ trick.user.name }} le {{ trick.createdAt|date('d/m/Y') }}
+                </div>
+                <div class="col-md-6">
+                    Dernière modification le {{ trick.updatedAt|date('d/m/Y à H:i:s') }}
+                </div>
+            </div>
+        </div>
+        <hr>
+        {% for message in app.flashes('success') %}
+        <div class="row justify-content-md-center">
+            <div class="col-8">
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% if app.user %}
+            {% if app.user.activated != 0%}
+                <form action="{{ path('app_message_create', {id: trick.id}) }}" method="post">
+                    <div class="form-group">
+                        <div class="row justify-content-md-center">
+                            <div class="col-6">
+                                <textarea name="content" class="form-control" placeholder="Votre message" rows="5"></textarea>
+                            </div>
+                            <div class="col-2">
+                                <button type="submit" class="btn btn-primary" style="width: 100%; position:absolute; top: 35%">Envoyer</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            {% else %}
+                <h5>Veuillez valider votre inscription pour poster un message</h5>
+            {% endif %}
+        {% else %}
+            <h5>Veuillez vous inscrire pour poster un message</h5>
+        {% endif %}
+        <hr>
+        <div class="col-10 offset-1" id="messageList">
+            {% for message in trick.messages|reverse if message.validated == 1%}
+                {% if nb_valid_message < 4 %}
+                    <div class="row justify-content-md-center">
+                        <div id="messageContent" class="col-10">
+                            <div class="row" id="infoUser">
+                                <div class="col-lg-1">
+                                    {% if message.user.avatar != null %}
+                                        <img class="rounded-circle" src="{{ asset('/uploads/avatars/' ~ message.user.avatar) }}">
+                                    {% else %}
+                                        <img class="rounded-circle" src="{{ asset('/images/userAvatarDefault') }}">
+                                    {% endif %}
+                                </div>
+                                <div class="col-lg-3">
+                                    <p>{{ message.user.name }}</p>
+                                </div>
+                                <div class="col-lg-5">
+                                    <p>le {{ message.createdAt|date('d/m/Y à H:i:s') }}</p>
+                                </div>
+                                <br><br>
+                            </div>
+                            <p>{{ message.content }}</p>
+                        </div>
+                    </div>
+                    {% set nb_valid_message = nb_valid_message + 1 %}
+                    {% set last_message_id = message.id %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% if nb_valid_message >= 4 %}
+            <div id="show_more">
+                <button class="btn btn-primary" name="btn_more" id="btn_more" data-msgid="{{ last_message_id }}" data-trkid="{{ trick.id }}">Afficher plus <i class="fas fa-plus-circle"></i></button>
+            </div>
+        {% elseif nb_valid_message == 0 %}
+            <div class="alert alert-info" role="alert">
+                Aucun message validé n'est associé à cette figure
+            </div>
+        {% endif %}
+    </div>
+    {% block javascripts %}
+        <script>
+            $(document).ready(function () {
+                $(document).on('click', '#btn_more', function () {
+                    $('#btn_more').html('Chargement <div class="spinner-border text-light spinner-border-sm" role="status"><span class="sr-only">Loading...</span></div>');
+                    var last_message_id = $(this).data("msgid");
+                    var trick_id = $(this).data("trkid");
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ path('app_message_showmore') }}",
+                        data: {last_message_id: last_message_id, trick_id: trick_id },
+                        /*data: 'last_message_id=' + last_message_id,*/
+                        cache:false,
+                        success: function(data){
+                            $('#btn_more').remove()
+                            $('#messageList').append(data);
+                        },
+                        error: function() {},
+                        complete: function () {
+                            $('#btn_more').html("Afficher plus <i class=\"fas fa-plus-circle\"></i>");
+                        }
+                    });
+                })
+            })
+        </script>
+    {% endblock %}
+{% endblock %}

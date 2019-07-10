@@ -31,7 +31,7 @@ class UpdatePasswordNotification
         $message = (new \Swift_Message('Mot de passe oublié sur JimmySweat.com'))
             ->setFrom('jimmysweat@admin.com')
             ->setTo($user->getEmail())
-            ->setBody($this->renderer->render('emails/forgotPassword.html.twig', [
+            ->setBody($this->renderer->render('emails/forgot_password.html.twig', [
                 'user' => $user,
                 'host' => $this->serverHost
             ]), 'text/html');

@@ -1,7 +1,7 @@
-{% extends 'admin/adminLayout.html.twig' %}
+{% extends 'admin/layout.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/admin/messagesAdmin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/message.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -40,7 +40,7 @@
                             <div id="description">{{ trick.description }}</div>
                             <hr>
                             {% for message in invalidMessageList %}
-                                {% if message.trickId.id == trick.id %}
+                                {% if message.trick.id == trick.id %}
                                     <h5>Message {{ message.id }} :</h5>
                                     <div id="messageInformations">
                                         <div class="row">
@@ -48,13 +48,13 @@
                                                 <h6>Créer le {{ message.createdAt|date('Y-m-d à H:i:s') }}</h6>
                                             </div>
                                             <div class="col-lg-5">
-                                                <h6>Dernière modification le {{ message.updatedAt|date('Y-m-d à H:i:s') }}</h6>
+                                                <h6> Message posté par {{ message.user.name }}</h6>
                                             </div>
                                         </div>
                                     </div>
                                     <div id="messageContent">{{ message.content }}</div>
                                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                        <input type=button onclick=window.location.href='{{ path('update_validated_message', {id: message.id}) }}'; value="Valider" class="btn btn-success"/>
+                                        <input type=button onclick=window.location.href='{{ path('app_message_updatevalidated', {id: message.id}) }}'; value="Valider" class="btn btn-success"/>
                                         <input type=button data-toggle="modal" data-target="#deleteMessage{{ message.id }}" value="Supprimer" class="btn btn-danger"/>
                                     </div>
                                     <!-- Modal -->
@@ -64,7 +64,7 @@
                                                 <div class="modal-body">
                                                     <h4>Etes-vous sûr de vouloir supprimer ce message ?</h4>
                                                 </div>
-                                                <form action="{{ path('delete_message', {id: message.id}) }}" method="post">
+                                                <form action="{{ path('app_message_delete', {id: message.id}) }}" method="post">
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ message.id) }}">
                                                     <div class="modal-footer">

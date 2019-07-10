@@ -10,7 +10,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg">
-            <a class="navbar-brand" href="{{ path('home') }}">Jimmy Sweat</a>
+            <a class="navbar-brand" href="{{ path('app_home_home') }}">Jimmy Sweat</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon">
                             <i class="fas fa-chevron-circle-down"></i>
@@ -25,14 +25,17 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         {% if app.user.avatar == null%}
                                             <img class="rounded-circle" id="avatar" src="{{ asset('images/userAvatarDefault.jpg') }}"/>
+                                        {% else %}
+                                            <img class="rounded-circle" id="avatar" src="{{ asset('uploads/avatars/' ~ app.user.avatar ) }}"/>
                                         {% endif %}
                                         {{ app.user.name }}
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         {% if app.user.role == 'admin' %}
-                                            <a class="dropdown-item" href="{{ path('trick_admin') }}">Admin</a>
+                                            <a class="dropdown-item" href="{{ path('app_admin_trick') }}">Admin</a>
                                         {% endif %}
-                                        <a class="dropdown-item" href="{{ path('user_logout') }}">Se déconnecter</a>
+                                        <a class="dropdown-item" href="{{ path('app_user_edit', {id: app.user.id}) }}">Editer mon profil</a>
+                                        <a class="dropdown-item" href="{{ path('app_user_logout') }}">Se déconnecter</a>
                                     </div>
                                 </li>
                             {% elseif app.user.role == 'validation' %}
@@ -40,10 +43,10 @@
                             {% endif %}
                          {% else %}
                             <li class="nav-item" id="signInLink">
-                                <a class="nav-link" href="{{ path('user_login') }}">Se connecter</a>
+                                <a class="nav-link" href="{{ path('app_user_login') }}">Se connecter</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('user_registration') }}">S'inscrire</a>
+                                <a class="nav-link" href="{{ path('app_user_registration') }}">S'inscrire</a>
                             </li>
                         {% endif %}
                     </ul>
@@ -51,13 +54,26 @@
             </div>
         </nav>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <footer>
+            <h1>Suivez Jimmy</h1>
+            <p>
+                <i class="fab fa-facebook-square fa-3x"></i>
+                <i class="fab fa-twitter-square fa-3x"></i>
+                <i class="fab fa-instagram fa-3x"></i>
+            </p>
+            <h5>© Jimmy Sweat - All Rights Reserved.</h5>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        {% block javascripts %}{% endblock %}
         <script>
             $(function () {
                 $('[data-toggle="popover"]').popover()
+            }),
+            $(document).ready(function () {
+                bsCustomFileInput.init()
             })
         </script>
     </body>

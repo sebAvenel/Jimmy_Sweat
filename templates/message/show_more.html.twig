@@ -1,0 +1,30 @@
+{% set last_message_id = '' %}
+{% for message in messageList %}
+    <div class="row justify-content-md-center">
+        <div id="messageContent" class="col-10">
+            <div class="row" id="infoUser">
+                <div class="col-lg-1">
+                    <img class="rounded-circle" src="{{ message.user.avatar }}">
+                </div>
+                <div class="col-lg-3">
+                    <p>{{ message.user.name }}</p>
+                </div>
+                <div class="col-lg-5">
+                    <p>le {{ message.createdAt|date('d/m/Y à H:i:s') }}</p>
+                </div>
+                <br><br>
+            </div>
+            <p>{{ message.content }}</p>
+        </div>
+    </div>
+    {% set last_message_id = message.id %}
+{% endfor %}
+{% if indexSize > 0 %}
+    <script>
+        $('#show_more').append('<button class="btn btn-primary" name="btn_more" id="btn_more" data-msgid="{{ last_message_id }}" data-trkid="{{ trickId }}">Afficher plus</button>');
+    </script>
+{% else %}
+    <script>
+        $('#show_more').append('<button class="btn btn-primary" disabled>Fin des messages</button>');
+    </script>
+{% endif %}

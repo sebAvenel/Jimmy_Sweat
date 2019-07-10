@@ -31,7 +31,7 @@ class RegistrationNotification
         $message = (new \Swift_Message('Confirmation inscription ' . $user->getName() . ' sur JimmySweat.com'))
             ->setFrom('jimmysweat@admin.com')
             ->setTo($user->getEmail())
-            ->setBody($this->renderer->render('emails/confirmRegistrationUser.html.twig', [
+            ->setBody($this->renderer->render('emails/confirmRegistration.html.twig', [
                 'user' => $user,
                 'host' => $this->serverHost
             ]), 'text/html');
