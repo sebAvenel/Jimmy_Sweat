@@ -16,7 +16,8 @@ class UserFixture extends Fixture
         for ($i = 0; $i < 100; $i++){
             $user = new User();
             $user
-                ->setAvatar($faker->imageUrl(150, 150))
+                /*->setAvatar($faker->imageUrl(150, 150))*/
+                ->setAvatar(null)
                 ->setName($faker->userName)
                 ->setPassword($faker->password)
                 ->setEmail($faker->email)

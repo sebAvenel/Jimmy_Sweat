@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title 'mot de passe oublié' %}
+{% block title 'Edition utilisateur' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/user/forgotpassword.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/user/edit.css') }}">
 {% endblock %}
 
 {% block body %}
     {% if form is defined and form != null %}
         <div class="container">
             <div id="form-content" class="col-lg-4 col-md-8 col-xs-10 offset-lg-4 offset-md-2 offset-xs-1">
-                <p>Merci de renseigner votre adresse mail.<br>Si cette adresse est reconnue, <br> vous recevrez un mail de mise à jour de votre mot de passe.</p>
+                <h3>Editer mon profil</h3>
                 {{ form_start(form) }}
                 {{ form_rest(form) }}
-                <button class="btn btn-primary" type="submit">Valider</button>
+                <button class="btn btn-primary" type="submit">Valider</button><br>
                 {{ form_end(form) }}
             </div>
         </div>
@@ -21,7 +21,7 @@
         <div class="container">
             <div class="card card-signin" id="confirmUpdatePassword">
                 <div class="card-body">
-                    <p>Votre demande de renouvellement de votre mot de passe pour l'adresse {{ email }} a bien été prise en compte.<br>Merci de cliquer sur lien présent dans le mail afin de le renouveler</p>
+                    <p>Les modifications ont bien été prise en compte</p>
                     <div class="spinner-grow" role="status">
                         <span class="sr-only">Loading...</span>
                     </div>
@@ -29,9 +29,9 @@
             </div>
             <script>
                 function redir(){
-                    self.location.href="{{ path('home') }}";
+                    self.location.href="{{ path('app_home_home') }}";
                 }
-                setTimeout(redir,10000);
+                setTimeout(redir,100000);
             </script>
         </div>
     {% endif %}

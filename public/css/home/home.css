@@ -1,0 +1,51 @@
+body{
+    background-color: whitesmoke;
+}
+.jumbotron{
+    position: relative;
+    overflow: hidden;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    line-height: 0px;
+}
+
+.navbar{
+    background-color: transparent;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+a{
+    color: white;
+}
+
+video {
+    width: 100%;
+}
+.card img{
+    width: 100%;
+    height: 150px;
+    margin-left: 0;
+    margin-right: 0;
+    border: none;
+}
+.card a{
+    color: black;
+}
+.spinner-border{
+    margin-left: 5px;
+}
+#remove_row{
+    text-align: center;
+    margin-top: 20px;
+}
+.fa-plus-circle{
+    margin-left: 5px;
+}
+@media (max-width: 842px) {
+    .card img{
+        height: auto;
+    }
+}

@@ -3,18 +3,45 @@
 namespace App\Controller;
 
 use App\Repository\TrickRepository;
-use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends Controller
 {
     /**
-     * @Route("/", name="home")
-     * @param TrickRepository $repository
-     * @return Response
+     * @var TrickRepository
      */
-    public function homePage(TrickRepository $repository): Response
+    private $repository;
+
+    public function __construct(TrickRepository $repository)
     {
-        return $this->render('home/home.html.twig');
+
+        $this->repository = $repository;
+    }
+
+    /**
+     * @Route("/")
+     * @Template()
+     * @return array
+     */
+    public function home()
+    {
+        $trickIndex = $this->repository->findBy(['validated' => 1], ['id' => 'DESC'], $limit = 8, $offset = 0);
+        $indexSize = sizeof($trickIndex);
+
+        return ['trickList' => $trickIndex,  'indexSize' => $indexSize];
+    }
+
+    /**
+     * @Route("/show_more")
+     * @Template()
+     */
+    public function showMore()
+    {
+        $trickIndex = $this->repository->showMore($_GET['last_trick_id']);
+        $indexSize = sizeof($trickIndex);
+
+        return ['trickList' => $trickIndex, 'indexSize' => $indexSize];
+
     }
 }

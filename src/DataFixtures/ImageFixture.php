@@ -16,8 +16,9 @@ class ImageFixture extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < 100; $i++) {
             $image = new Image();
             $image
-                ->setName($faker->imageUrl(250, 150))
-                ->setTrick($this->getReference('trick-' . rand(0, 9)));
+                /*->setName($faker->imageUrl(250, 150))*/
+                ->setName('bf4880c7471af0cec83c3d73df6a4d2a.jpeg')
+                ->setTrick($this->getReference('trick-' . rand(0, 29)));
             $manager->persist($image);
         }
         // $product = new Product();

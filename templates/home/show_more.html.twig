@@ -1,0 +1,48 @@
+{% set last_trick_id = "" %}
+{% for trick in trickList %}
+    <div class="col-md-3">
+        <div class="card mb-3">
+            {% if trick.images|length > 0 %}
+                {% set imagesArray = [] %}
+                {% for image in trick.images %}
+                    {% set imagesArray = imagesArray|merge([image.name]) %}
+                {% endfor %}
+                <img src="{{ asset('uploads/images/' ~ random(imagesArray)) }}">
+            {% else %}
+                <img class="card-img-top" src="{{ asset('images/imgTrickDefault.jpg') }}">
+            {% endif %}
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <a href="{{ path('app_trick_show', {id: trick.id}) }}">{{ trick.name }}</a>
+                    </div>
+                    {% if app.user %}
+                        {% if app.user.activated != 0 %}
+                            {% if app.user.role == 'admin' or trick.user.id == app.user.id %}
+                                <div class="col-2">
+                                    <a href="{{ path('app_trick_edit', {id: trick.id }) }}"><i class="fas fa-pencil-alt"></i></a>
+                                </div>
+                                <div class="col-2">
+                                    <i class="far fa-trash-alt"></i>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% set last_trick_id = trick.id %}
+{% endfor %}
+{% if indexSize >= 8 %}
+    <script>
+        $('#remove_row').append('<button class="btn btn-primary" name="btn_more" id="btn_more" data-id="{{ last_trick_id }}">Afficher plus</button>');
+    </script>
+{% else %}
+    <script>
+        $('#remove_row').append('<button class="btn btn-primary" disabled>Fin des figures</button>');
+    </script>
+{% endif %}
+
+
+

@@ -30,6 +30,19 @@ class MessageRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function showMore($messageId, $trick_id)
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.id < ' . $messageId)
+            ->andWhere('m.trick = ' . $trick_id)
+            ->andWhere('m.validated = 1')
+            ->orderBy('m.id', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Message[] Returns an array of Message objects
     //  */

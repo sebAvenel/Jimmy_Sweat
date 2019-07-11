@@ -1,7 +1,7 @@
-{% extends 'admin/adminLayout.html.twig' %}
+{% extends 'admin/layout.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/admin/userAdmin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/user.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -35,7 +35,7 @@
                             <td>{{ user.name }}</td>
                             <td>{{ user.role }}</td>
                             <td>
-                                <a href="{{ path('update_user_role', {id: user.id}) }}">
+                                <a href="{{ path('app_user_updaterole', {id: user.id}) }}">
                                     {% if user.role == 'admin' %}
                                         <i class="fas fa-toggle-on"></i>
                                     {% else %}
@@ -51,7 +51,7 @@
                                         <div class="modal-body">
                                             <h4>Etes-vous sûr de vouloir supprimer l'utilisateur '{{ user.name }}' ?</h4>
                                         </div>
-                                        <form action="{{ path('delete_user', {id: user.id}) }}" method="post">
+                                        <form action="{{ path('app_user_deletefromadmin', {id: user.id}) }}" method="post">
                                             <input type="hidden" name="_method" value="DELETE">
                                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
                                             <div class="modal-footer">

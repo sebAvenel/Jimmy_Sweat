@@ -6,7 +6,7 @@
         <!-- bootstrap-css -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <!-- Custom CSS -->
-        <link rel="stylesheet" href="{{ asset('css/admin/adminLayout.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/admin/layout.css') }}">
         <!-- font-awesome icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
         <script src="{{ asset('js/modernizr.js') }}"></script>
@@ -18,6 +18,8 @@
             {% if app.user %}
                 {% if app.user.avatar == null%}
                     <img class="rounded-circle" id="avatar" src="{{ asset('images/userAvatarDefault.jpg') }}"/>
+                {% else %}
+                    <img class="rounded-circle" id="avatar" src="{{ asset('uploads/avatars/' ~ app.user.avatar ) }}"/>
                 {% endif %}
                 {{ app.user.name }}
             {% endif %}
@@ -25,31 +27,31 @@
         <nav class="main-menu">
             <ul>
                 <li>
-                    <a href="{{ path('home') }}">
+                    <a href="{{ path('app_home_home') }}">
                         <i class="fas fa-home"></i>
                         <span class="nav-text">Accueil</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ path('trick_admin') }}">
+                    <a href="{{ path('app_admin_trick') }}">
                         <i class="fas fa-snowboarding"></i>
                         <span class="nav-text">Figures</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ path('message_admin') }}">
+                    <a href="{{ path('app_admin_message') }}">
                         <i class="far fa-comment-dots"></i>
                         <span class="nav-text">Messages</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ path('user_admin') }}">
+                    <a href="{{ path('app_admin_user') }}">
                         <i class="fas fa-users"></i>
                         <span class="nav-text">Utilisateurs</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ path('user_logout') }}">
+                    <a href="{{ path('app_user_logout') }}">
                         <i class="fas fa-sign-out-alt"></i>
                         <span class="nav-text">Se déconnecter</span>
                     </a>

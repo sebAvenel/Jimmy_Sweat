@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
@@ -17,9 +18,17 @@ class Image
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank()
+     * @Assert\File(mimeTypes={"image/gif", "image/jpeg", "image/jpg", "image/png"})
      */
     private $name;
+
+    /**
+     * @Assert\NotBlank()
+     * @Assert\File(mimeTypes={"image/gif", "image/jpeg", "image/jpg", "image/png"})
+     */
+    private $file;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Trick", inversedBy="images")
@@ -53,6 +62,24 @@ class Image
     {
         $this->trick = $trick;
 
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param mixed $file
+     * @return Image
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
         return $this;
     }
 }

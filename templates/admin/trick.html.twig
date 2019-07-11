@@ -1,7 +1,7 @@
-{% extends 'admin/adminLayout.html.twig' %}
+{% extends 'admin/layout.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/admin/tricksAdmin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/trick.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -37,9 +37,27 @@
                 <div id="collapse{{ trick.id }}" class="collapse" aria-labelledby="heading{{ trick.id }}" data-parent="#accordionExample">
                     <div class="card-body">
                         <h5>Description:</h5>
-                        <div id="description">{{ trick.description }}</div>
+                        <div class="container">
+                            <div id="description">{{ trick.description }}</div>
+                            <div id="gallery">
+                                <div class="row">
+                                    {% for image in trick.images %}
+                                        <div class="col-lg-2">
+                                            <a href="{{ asset('/uploads/images/' ~ image.name) }}" class="thumbnail" target="_blank">
+                                                <img src="{{ asset('/uploads/images/' ~ image.name) }}">
+                                            </a>
+                                        </div>
+                                    {% endfor %}
+                                    {% for video in trick.videos %}
+                                        <div class="col-lg-2">
+                                            {{ video.code|raw }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <input type=button onclick=window.location.href='{{ path('update_validated_trick', {id: trick.id}) }}'; value="Valider" class="btn btn-success"/>
+                            <input type=button onclick=window.location.href='{{ path('app_trick_updatevalidated', {id: trick.id}) }}'; value="Valider" class="btn btn-success"/>
                             <input type=button data-toggle="modal" data-target="#deleteTrick{{ trick.id }}" value="Supprimer" class="btn btn-danger"/>
                         </div>
                         <!-- Modal -->
@@ -49,7 +67,7 @@
                                     <div class="modal-body">
                                         <h4>Etes-vous sûr de vouloir supprimer cette figure ?</h4>
                                     </div>
-                                    <form action="{{ path('delete_trick', {id: trick.id}) }}" method="post">
+                                    <form action="{{ path('app_trick_delete', {id: trick.id, source: 'admin'}) }}" method="post">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ trick.id) }}">
                                         <div class="modal-footer">

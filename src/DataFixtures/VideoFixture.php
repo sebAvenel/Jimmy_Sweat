@@ -18,8 +18,8 @@ class VideoFixture extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < 100; $i++){
             $video = new Video();
             $video
-                ->setCode($faker->youtubeUri())
-                ->setTrick($this->getReference('trick-' . rand(0, 9)));
+                ->setCode('<iframe width="560" height="315" src="https://www.youtube.com/embed/3ZcrCdASfYM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
+                ->setTrick($this->getReference('trick-' . rand(0, 29)));
             $manager->persist($video);
         }
         // $product = new Product();

@@ -21,7 +21,9 @@ class TrickFixture extends Fixture implements DependentFixtureInterface
                 ->setCreatedAt($faker->dateTime('now', null))
                 ->setUpdatedAt($faker->dateTime('now', null))
                 ->setValidated(rand(0, 1))
-                ->setUser($this->getReference('user-' . rand(0, 9)));
+                ->setUser($this->getReference('user-' . rand(0, 99)))
+                ->setGroups(rand(1, 4))
+                ->setFirstImage(null);
             $manager->persist($trick);
 
             $this->addReference('trick-' . $i, $trick);

@@ -47,6 +47,13 @@ class Message
      */
     private $user;
 
+    public function __construct()
+    {
+        $this->created_at = new \DateTime();
+        $this->updated_at = new \DateTime();
+        $this->validated = 0;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -100,7 +107,7 @@ class Message
         return $this;
     }
 
-    public function getTrickId(): ?Trick
+    public function getTrick(): ?Trick
     {
         return $this->trick;
     }

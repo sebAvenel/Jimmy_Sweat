@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Edition utilisateur' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/trick/edit.css') }}">
+{% endblock %}
+
+{% block body %}
+    {% if form is defined and form != null %}
+        <div class="container">
+            <div id="form-content" class="col-lg-8 col-md-8 col-xs-10 offset-lg-2 offset-md-2 offset-xs-1">
+                <h3>Ajouter Figure</h3>
+                {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-lg-6">{{ form_row(form.name) }}</div>
+                    <div class="col-lg-6">{{ form_row(form.groups) }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">{{ form_row(form.description) }}</div>
+                </div>
+                <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#videoManagementCollapse">Gestion des vidéos</button>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#imageManagementCollapse">Gestion des images</button>
+                </p>
+                <div class="collapse multi-collapse" id="videoManagementCollapse">
+                    <div class="videoManagement" id="videoManagement" data-prototype="{{ form_widget(form.videos.vars.prototype)|e('html_attr') }}"></div>
+                </div>
+                <div class="collapse multi-collapse" id="imageManagementCollapse">
+                    <div class="imageManagement" id="imageManagement" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">                    </div>
+                </div>
+                {{ form_rest(form) }}
+                <button class="btn btn-primary" type="submit">Valider</button><br>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    {% else %}
+        <div class="container">
+            <div class="card card-signin" id="confirmUpdatePassword">
+                <div class="card-body">
+                    <p>La figure a bien été crée, elle est maintenant en attente de validation par l'un de nos modérateurs</p>
+                    <div class="spinner-grow" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <script>
+                function redir(){
+                    self.location.href="{{ path('app_home_home') }}";
+                }
+                setTimeout(redir,10000);
+            </script>
+        </div>
+    {% endif %}
+    {% block javascripts %}
+        <script src="{{ asset('js/image-picker.js') }}"></script>
+        <script>$("select").imagepicker()</script>
+        <script>
+
+            {# Videos Management#}
+            var $videosCollectionHolder;
+            var $addVideoButton = $('<button type="button" class=" btn btn-secondary add_video_link">Ajouter une vidéo <i class="fas fa-plus-circle"></i></button>');
+            var $newAddVideoButton = $('<div></div>').append($addVideoButton);
+
+            {# Images management #}
+            var $imagesCollectionHolder;
+            var $addImageButton = $('<button type="button" class=" btn btn-secondary add_video_link">Ajouter une image <i class="fas fa-plus-circle"></i></button>');
+            var $newAddImageButton = $('<div></div>').append($addImageButton);
+
+
+            jQuery(document).ready(function() {
+
+                {# Videos Management#}
+                $videosCollectionHolder = $('div#videoManagement');
+                $videosCollectionHolder.find('.videoContent').each(function() {
+                    addVideoFormDeleteLink($(this));
+                });
+                $videosCollectionHolder.append($newAddVideoButton);
+                // count the current form inputs we have (e.g. 2), use that as the new
+                // index when inserting a new item (e.g. 2)
+                $videosCollectionHolder.data('index', $videosCollectionHolder.find(':input').length);
+                $addVideoButton.on('click', function() {
+                    addVideoForm($videosCollectionHolder, $newAddVideoButton);
+                });
+
+                {# Images management #}
+                $imagesCollectionHolder = $('div#imageManagement');
+                $imagesCollectionHolder.find('.imageContent').each(function() {
+                    addImageFormDeleteLink($(this));
+                });
+                $imagesCollectionHolder.append($newAddImageButton);
+                $imagesCollectionHolder.data('index', $imagesCollectionHolder.find(':input').length);
+                $addImageButton.on('click', function() {
+                    addImageForm($imagesCollectionHolder, $newAddImageButton);
+                    bsCustomFileInput.init();
+                });
+
+            });
+
+            {# Videos Management#}
+            function addVideoForm($collectionHolder, $newLinkLi) {
+                var prototype = $collectionHolder.data('prototype');
+                var index = $collectionHolder.data('index');
+                var newForm = prototype;
+                newForm = newForm.replace(/__name__/g, index);
+                $collectionHolder.data('index', index + 1);
+                var $newFormLi = $('<div></div>').append(newForm);
+                $newLinkLi.before($newFormLi);
+                addVideoFormDeleteLink($newFormLi);
+            }
+
+            function addVideoFormDeleteLink($tagFormLi) {
+                var $removeFormButton = $('<button type="button" class="btn btn-danger removeButton">Supprimer</button>');
+                $tagFormLi.append($removeFormButton);
+                $removeFormButton.on('click', function(e) {
+                    $tagFormLi.remove();
+                });
+            }
+
+            {# Images management #}
+            function addImageForm($collectionHolder, $newLinkLi) {
+                var prototype = $collectionHolder.data('prototype');
+                var index = $collectionHolder.data('index');
+                var newForm = prototype;
+
+                newForm = newForm.replace(/__name__/g, index);
+                $collectionHolder.data('index', index + 1);
+                var $newFormLi = $('<div></div>').append(newForm);
+                $newLinkLi.before($newFormLi);
+                addVideoFormDeleteLink($newFormLi);
+            }
+
+            function addImageFormDeleteLink($tagFormLi) {
+                var $removeFormButton = $('<button type="button" class="btn btn-danger removeButton">Supprimer</button>');
+                $tagFormLi.append($removeFormButton);
+                $removeFormButton.on('click', function(e) {
+                    $tagFormLi.remove();
+                });
+            }
+
+        </script>
+    {% endblock %}
+{% endblock %}
