@@ -56,6 +56,7 @@ class TrickController extends Controller
         $trick->setValidated(1);
         $this->manager->flush();
 
+        $this->addFlash('successValidTrick', 'Le trick "' . $trick->getName() . '" a bien été validé');
         return $this->redirectToRoute('app_admin_trick');
     }
 
@@ -70,11 +71,11 @@ class TrickController extends Controller
         if ($this->isCsrfTokenValid('delete' . $trick->getId(), $request->get('_token'))) {
             $this->manager->remove($trick);
             $this->manager->flush();
-            $this->addFlash('success', 'La figure "' . $trick->getName() . '"" a bien été supprimée');
+            $this->addFlash('success', 'La figure "' . $trick->getName() . '" a bien été supprimée');
             if ($source == 'admin'){
                 return $this->redirectToRoute('app_admin_trick');
             }elseif ($source == 'home'){
-                return $this->redirectToRoute('app_home_home');
+                return $this->redirectToRoute('app_home_home', ['_fragment' => 'trickListTitle']);
             }
         }
 

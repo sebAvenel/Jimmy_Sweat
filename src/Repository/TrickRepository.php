@@ -30,18 +30,18 @@ class TrickRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function showMore($id)
+    public function showMore($id, $group)
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.id < ' . $id)
+            ->andWhere('t.validated = 1')
+            ->andWhere('t.groups' . $group)
             ->orderBy('t.id', 'DESC')
             ->setMaxResults(8)
             ->getQuery()
             ->getResult()
          ;
     }
-
-
 
     // /**
     //  * @return Trick[] Returns an array of Trick objects

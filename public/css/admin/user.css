@@ -9,8 +9,11 @@
 .fa-toggle-on, .fa-toggle-off, .fa-trash-alt{
     color: white;
 }
-#containerTable{
+#errors{
     margin-top: 150px;
+}
+.table{
+    margin-bottom: 150px;
 }
 .table td, .table th {
     vertical-align: middle;
@@ -28,4 +31,23 @@ td button:focus{
 }
 .alert-success{
     position: unset;
+}
+@media (min-width: 1200px) {
+    .table {
+        position: absolute;
+        width: 56%;
+        right: 22%;
+    }
+}
+@media (min-width: 1700px) {
+    .table {
+        position: absolute;
+        width: 70%;
+        right: 15%;
+    }
+}
+@media (max-width: 1200px){
+    #errors{
+        margin-top: 200px;
+    }
 }

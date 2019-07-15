@@ -20,13 +20,14 @@ class Image
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank()
-     * @Assert\File(mimeTypes={"image/gif", "image/jpeg", "image/jpg", "image/png"})
      */
     private $name;
 
     /**
      * @Assert\NotBlank()
-     * @Assert\File(mimeTypes={"image/gif", "image/jpeg", "image/jpg", "image/png"})
+     * @Assert\File(mimeTypes={"images/gif", "images/jpeg", "images/jpg", "images/png"},
+     *              mimeTypesMessage = "Veuillez choisir une images au bon format (gif, jpeg, jpg, png)"
+     * )
      */
     private $file;
 

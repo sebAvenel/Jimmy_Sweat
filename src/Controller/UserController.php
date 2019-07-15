@@ -62,8 +62,10 @@ class UserController extends Controller
     {
         if ($user->getRole() == 'admin'){
             $user->setRole('user');
+            $this->addFlash('userUpdateRoleUser', 'L\'utilisateur ' . $user->getName(). ' a maintenant le role utilisateur');
         } elseif ($user->getRole() == 'user'){
             $user->setRole('admin');
+            $this->addFlash('userUpdateRoleAdmin', 'L\'utilisateur ' . $user->getName(). ' a maintenant le role administrateur');
         }
 
         $this->manager->flush();
@@ -72,13 +74,12 @@ class UserController extends Controller
 
     /**
      * @Route("/delete/{id}", methods="DELETE")
-     * @param $id
+     * @param User $user
      * @param Request $request
      * @return RedirectResponse
      */
-    public function deleteFromAdmin($id, Request $request): RedirectResponse
+    public function deleteFromAdmin(User $user, Request $request): RedirectResponse
     {
-        $user = $this->userRepository->find($id);
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->get('_token'))){
             $this->manager->remove($user);
             $this->manager->flush();
@@ -128,10 +129,12 @@ class UserController extends Controller
             $user->setToken(md5(uniqid('jimmySweat', true)));
             $this->manager->persist($user);
             $this->manager->flush();
+
             return $this->redirectToRoute('app_user_login');
         }
 
-        return $this->errorViewDisplay('Ce lien semble périmé');
+        $this->addFlash('failureConfirmRegistration', 'Ce lien semble périmé, veuillez vous réinscrire');
+        return $this->redirectToRoute('app_home_home');
     }
 
     /**
@@ -208,7 +211,8 @@ class UserController extends Controller
             return ['form' => $form->createView()];
         }
 
-        return $this->errorViewDisplay('Ce lien semble périmé');
+        $this->addFlash('failureUpdatePassword', 'Ce lien semble périmé, veuillez renouveler votre demande de nouveau mot de passe');
+        return $this->redirectToRoute('app_home_home');
     }
 
     /**
@@ -228,9 +232,8 @@ class UserController extends Controller
                 $file = $user->getAvatar();
                 $fileName = md5(uniqid()).'.'.$file->guessExtension();
                 $avatars_directory = $this->getParameter('avatars_directory');
-                echo $avatars_directory;
                 if ($avatarFile != null){
-                    $this->filesystem->remove($avatars_directory, $avatarFile);
+                    $this->filesystem->remove($avatars_directory . '/' . $avatarFile);
                 }
                 $file->move(
                     $avatars_directory,

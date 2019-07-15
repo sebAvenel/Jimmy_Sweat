@@ -15,7 +15,7 @@ class ImageType extends AbstractType
     {
         $builder
             ->add('name', HiddenType::class, ['label' => false, 'required' => false])
-            ->add('file', FileType::class, ['attr' => ['placeholder' => 'Choisir une image'], 'label' => false, 'required' => false])
+            ->add('file', FileType::class, ['attr' => ['placeholder' => 'Choisir une images'], 'label' => false, 'required' => false])
         ;
     }
 

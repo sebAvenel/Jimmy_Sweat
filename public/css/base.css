@@ -1,3 +1,6 @@
+body{
+    font-family: 'Literata', serif;
+}
 .navbar{
     padding-left: 10%;
     padding-right: 10%;
@@ -6,7 +9,9 @@
 .nav-link{
     padding: 0px;
 }
-
+#byGroup{
+    margin-right: 30px;
+}
 .fa-chevron-circle-down{
     color: white;
 }
@@ -47,7 +52,6 @@ img{
 }
 .fa-exclamation-circle{
     color: red;
-    position: absolute;
 }
 footer{
     text-align: center;
@@ -55,6 +59,8 @@ footer{
     padding-bottom: 60px;
     background-color: #DFE2E5;
     margin-top: 100px;
+    position: relative;
+    bottom: 0;
 }
 footer h1{
     font-size: 2rem;

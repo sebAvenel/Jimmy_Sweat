@@ -8,6 +8,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TrickRepository")
@@ -23,11 +24,23 @@ class Trick
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 50,
+     *      minMessage = "Votre nom doit contenir au minimum 3 caractères",
+     *      maxMessage = "Votre nom doit contenir au maximum 50 caractères"
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(
+     *      min = 50,
+     *      max = 1500,
+     *      minMessage = "La description doit contenir au minimum 50 caractères",
+     *      maxMessage = "La description doit contenir au maximum 1500 caractères"
+     * )
      */
     private $description;
 
@@ -69,6 +82,10 @@ class Trick
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 4
+     * )
      */
     private $groups;
 
@@ -333,7 +350,7 @@ class Trick
     }
 
     /**
-     * Controls if the images collection associated with a trick matches an image array, if an element does not match, it is erased
+     * Controls if the images collection associated with a trick matches an images array, if an element does not match, it is erased
      * @param ArrayCollection $imagesArray
      * @param Trick $trick
      * @param Filesystem $filesystem

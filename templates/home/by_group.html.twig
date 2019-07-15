@@ -13,34 +13,22 @@
         </video>
         <a class="js-scrollTo" href="#footer"><i class="fas fa-arrow-circle-down fa-3x"></i></a>
     </div>
-    <div id="errors">
-        {% for message in app.flashes('failureConfirmRegistration') %}
-            <div class="alert alert-danger" id="failureConfirmRegistration">
-                {{ message }}
-            </div>
-        {% endfor %}
-        {% for message in app.flashes('failureUpdatePassword') %}
-            <div class="alert alert-danger" id="failureUpdatePassword">
-                {{ message }}
-            </div>
-        {% endfor %}
-    </div>
-    <div class="container" id="trickContent">
+    <div class="container">
         <div id="seeMedias">
             <button type="button" class="btn btn-primary" id="seeTricks">Voir les figures</button>
         </div>
         <div id="trickList">
-            <h1 id="trickListTitle">Liste des figures</h1>
             {% for message in app.flashes('success') %}
-                <div class="alert alert-success mt-4">
+                <div class="alert alert-success">
                     {{ message }}
                 </div>
             {% endfor %}
             {% for message in app.flashes('failure') %}
-                <div class="alert alert-danger mt-4">
+                <div class="alert alert-danger">
                     {{ message }}
                 </div>
             {% endfor %}
+            <h1 id="trickListTitle">Liste des figures groupe {{ group }}</h1>
             <div class="row" id="data_list">
                 {% for trick in trickList %}
                     <div class="col-sm-12 col-md-6 col-lg-3">
@@ -71,7 +59,7 @@
                                                     <i class="far fa-trash-alt" data-toggle="modal" data-target="#deleteTrick{{ trick.id }}"></i>
                                                     {#<input type=button data-toggle="modal" data-target="#deleteTrick{{ trick.id }}" value="Supprimer" class="btn btn-danger"/>#}
                                                 </div>
-                                             {% endif %}
+                                            {% endif %}
                                         {% endif %}
                                     {% endif %}
                                 </div>
@@ -104,7 +92,7 @@
                     <a href="{{ path('app_trick_create') }}"><button class="btn btn-primary">Ajouter figure <i class="fas fa-plus-circle"></i></button></a>
                 {% endif %}
                 {% if indexSize == 8 %}
-                    <button class="btn btn-primary" name="btn_more" id="btn_more" data-id="{{ last_trick_id }}">Afficher plus <i class="fas fa-plus-circle"></i></button>
+                    <button class="btn btn-primary" name="btn_more" id="btn_more" data-id="{{ last_trick_id }}" data-group="{{ group }}">Afficher plus <i class="fas fa-plus-circle"></i></button>
                 {% endif %}
             </div>
         </div>
@@ -167,10 +155,11 @@
                 $(document).on('click', '#btn_more', function () {
                     $('#btn_more').html('Chargement <div class="spinner-border text-light spinner-border-sm" role="status"><span class="sr-only">Loading...</span></div>');
                     var last_trick_id = $(this).data("id");
+                    var group = $(this).data("group");
                     $.ajax({
                         type: "GET",
                         url: "{{ path('app_home_showmore') }}",
-                        data: 'last_trick_id=' + last_trick_id,
+                        data: {last_trick_id: last_trick_id, group: group},
                         cache:false,
                         success: function(data){
                             $('#btn_more').remove()

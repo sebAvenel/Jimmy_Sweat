@@ -17,7 +17,7 @@ class UserType extends AbstractType
         $builder
             ->add('name', TextType::class, ['attr' => ['placeholder' => 'Nom'], 'label' => 'Nom'])
             ->add('email', EmailType::class, ['attr' => ['placeholder' => 'Email'], 'label' => 'Email'])
-            ->add('avatar', FileType::class, ['attr' => ['placeholder' => 'Choisir image'], 'label' => 'Avatar', 'data_class' => null, 'required' => false])
+            ->add('avatar', FileType::class, ['attr' => ['placeholder' => 'Choisir images'], 'label' => 'Avatar', 'data_class' => null, 'required' => false])
         ;
     }
 

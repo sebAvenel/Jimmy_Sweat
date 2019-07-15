@@ -24,6 +24,33 @@
                 {{ app.user.name }}
             {% endif %}
         </div>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a href="{{ path('app_home_home') }}">
+                    <i class="fas fa-home"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ path('app_admin_trick') }}">
+                    <i class="fas fa-snowboarding"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ path('app_admin_message') }}">
+                    <i class="far fa-comment-dots"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ path('app_admin_user') }}">
+                    <i class="fas fa-users"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ path('app_user_logout') }}">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </li>
+        </ul>
         <nav class="main-menu">
             <ul>
                 <li>

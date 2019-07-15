@@ -9,6 +9,7 @@
     <mapping directory="$PROJECT_DIR$/vendor/fzaninotto/faker" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/sensio/framework-extra-bundle" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/apache-pack" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/asset" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/cache" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/config" vcs="Git" />

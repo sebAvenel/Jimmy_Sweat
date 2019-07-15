@@ -15,7 +15,6 @@ body {
 .navbar a{
     color: white;
 }
-
 #form-content, .card{
     margin-top: 15%;
     text-align: center;
@@ -103,35 +102,6 @@ iframe{
 .removeButton{
     margin-bottom: 20px;
 }
-
-/* Image picker */
-
-/* line 6, source/sass/images-picker.scss */
-ul.thumbnails.image_picker_selector {
-    overflow: auto;
-    list-style-type: none;
-    padding: 0;
-}
-/* line 15, source/sass/images-picker.scss */
-ul.thumbnails.image_picker_selector ul {
-    overflow: auto;
-}
-/* line 25, source/sass/images-picker.scss */
-ul.thumbnails.image_picker_selector li.group_title {
-    float: none; }
-/* line 30, source/sass/images-picker.scss */
-ul.thumbnails.image_picker_selector li {
-    margin: 3px 3px 3px 3px;
-    float: left;
-}
-/* line 35, source/sass/images-picker.scss */
-ul.thumbnails.image_picker_selector li .thumbnail {
-    padding: 6px;
-}
-/* line 48, source/sass/images-picker.scss */
-ul.thumbnails.image_picker_selector li .thumbnail.selected {
-    background: #dc3545; }
-
 #firstImageCollapse{
     padding: 20px;
     background-color: whitesmoke;
@@ -149,7 +119,7 @@ ul.thumbnails.image_picker_selector li .thumbnail.selected {
     width: 160px;
     height: 120px;
 }
-#confirmEditTrick{
+#confirmCreateTricks{
     margin-bottom: 150px;
 }
 footer{

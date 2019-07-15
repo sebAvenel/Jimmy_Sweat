@@ -1,19 +1,23 @@
 body{
     background-color: whitesmoke;
+    padding-bottom: 150px;
 }
-h1{
+h2{
     position: absolute;
     color: white;
     margin-top: 30px;
     margin-left: 30px;
 }
+span{
+    margin-left: 30px;
+}
 p{
-    text-align: center;
-    margin-bottom: 300px;
+    margin-left: 60px;
 }
 
 img{
     width: 100%;
     height: auto;
     background-size: cover;
+    margin-bottom: 30px;
 }
