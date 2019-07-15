@@ -3,7 +3,7 @@
 {% block title 'Edition utilisateur' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/trick/edit.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/trick/create.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -36,10 +36,10 @@
         </div>
     {% else %}
         <div class="container">
-            <div class="card card-signin" id="confirmUpdatePassword">
+            <div class="card card-signin" id="confirmCreateTricks">
                 <div class="card-body">
                     <p>La figure a bien été crée, elle est maintenant en attente de validation par l'un de nos modérateurs</p>
-                    <div class="spinner-grow" role="status">
+                    <div class="spinner-grow text-primary" role="status">
                         <span class="sr-only">Loading...</span>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
         </div>
     {% endif %}
     {% block javascripts %}
-        <script src="{{ asset('js/image-picker.js') }}"></script>
+        <script src="{{ asset('js/images-picker.js') }}"></script>
         <script>$("select").imagepicker()</script>
         <script>
 
@@ -64,7 +64,7 @@
 
             {# Images management #}
             var $imagesCollectionHolder;
-            var $addImageButton = $('<button type="button" class=" btn btn-secondary add_video_link">Ajouter une image <i class="fas fa-plus-circle"></i></button>');
+            var $addImageButton = $('<button type="button" class=" btn btn-secondary add_video_link">Ajouter une images <i class="fas fa-plus-circle"></i></button>');
             var $newAddImageButton = $('<div></div>').append($addImageButton);
 
 

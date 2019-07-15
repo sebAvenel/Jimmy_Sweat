@@ -6,7 +6,9 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ asset('css/base.css') }}">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
         {% block stylesheets %}{% endblock %}
+        {% block head %}{% endblock %}
     </head>
     <body>
         <nav class="navbar navbar-expand-lg">
@@ -19,6 +21,18 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <form>
                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown" id="byGroup">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Figures
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ path('app_home_home') }}">Toutes</a>
+                                <a class="dropdown-item" href="{{ path('app_home_bygroup', {group: 1}) }}">Groupe 1</a>
+                                <a class="dropdown-item" href="{{ path('app_home_bygroup', {group: 2}) }}">Groupe 2</a>
+                                <a class="dropdown-item" href="{{ path('app_home_bygroup', {group: 3}) }}">Groupe 3</a>
+                                <a class="dropdown-item" href="{{ path('app_home_bygroup', {group: 4}) }}">Groupe 4</a>
+                            </div>
+                        </li>
                         {% if app.user %}
                             {% if app.user.role == 'user' or app.user.role == 'admin' %}
                                 <li class="nav-item dropdown">
@@ -39,7 +53,7 @@
                                     </div>
                                 </li>
                             {% elseif app.user.role == 'validation' %}
-                                 <i class="fas fa-exclamation-circle fa-2x" data-toggle="popover" data-placement="left" data-content="N'oubliez pas de valider votre inscription en cliquant sur le lien de l'email envoyé à {{ app.user.email }} pour avoir accès à des fonctionnalités supplémentaires."></i>
+                                 <i class="fas fa-exclamation-circle fa-2x" data-toggle="popover" data-placement="bottom" data-content="N'oubliez pas de valider votre inscription en cliquant sur le lien de l'email envoyé à {{ app.user.email }} pour avoir accès à des fonctionnalités supplémentaires."></i>
                             {% endif %}
                          {% else %}
                             <li class="nav-item" id="signInLink">
@@ -54,7 +68,7 @@
             </div>
         </nav>
         {% block body %}{% endblock %}
-        <footer>
+        <footer id="footer">
             <h1>Suivez Jimmy</h1>
             <p>
                 <i class="fab fa-facebook-square fa-3x"></i>

@@ -36,7 +36,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   sanitized_options = function sanitized_options(opts) {
     var default_options;
     default_options = {
-      hide_select: false,
+      hide_select: true,
       show_label: false,
       initialized: void 0,
       changed: void 0,

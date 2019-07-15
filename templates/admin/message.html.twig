@@ -17,6 +17,11 @@
                     {{ message }}
                 </div>
             {% endfor %}
+            {% for message in app.flashes('successUpdateMessage') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
             {% for trick in trickList %}
                 <div class="card">
                     <div class="card-header" id="heading{{ trick.id }}">

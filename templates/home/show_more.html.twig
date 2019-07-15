@@ -23,12 +23,30 @@
                                     <a href="{{ path('app_trick_edit', {id: trick.id }) }}"><i class="fas fa-pencil-alt"></i></a>
                                 </div>
                                 <div class="col-2">
-                                    <i class="far fa-trash-alt"></i>
+                                    <i class="far fa-trash-alt" data-toggle="modal" data-target="#deleteTrick{{ trick.id }}"></i>
                                 </div>
                             {% endif %}
                         {% endif %}
                     {% endif %}
                 </div>
+            </div>
+        </div>
+    </div>
+    {# Modal delete trick #}
+    <div class="modal fade" id="deleteTrick{{ trick.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h4>Etes-vous sûr de vouloir supprimer cette figure ?</h4>
+                </div>
+                <form action="{{ path('app_trick_delete', {id: trick.id, source: 'home'}) }}" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ trick.id) }}">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Confirmer</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

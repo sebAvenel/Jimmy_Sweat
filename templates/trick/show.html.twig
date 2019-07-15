@@ -25,18 +25,50 @@
             {% else %}
                 <img class="card-img-top" src="{{ asset('images/imgTrickDefault.jpg') }}">
             {% endif %}
+            {% if app.user %}
+                {% if app.user.activated != 0 %}
+                    {% if app.user.role == 'admin' or trick.user.id == app.user.id %}
+                        <p id="trickManagement">
+                            <a href="{{ path('app_trick_edit', {id: trick.id }) }}"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="#"><i class="far fa-trash-alt" data-toggle="modal" data-target="#deleteTrick{{ trick.id }}"></i></a>
+                            {#<input type=button data-toggle="modal" data-target="#deleteTrick{{ trick.id }}" value="Supprimer" class="btn btn-danger"/>#}
+                        </p>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+            {# Modal delete trick #}
+            <div class="modal fade" id="deleteTrick{{ trick.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <h4>Etes-vous sûr de vouloir supprimer cette figure ?</h4>
+                        </div>
+                        <form action="{{ path('app_trick_delete', {id: trick.id, source: 'home'}) }}" method="post">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ trick.id) }}">
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+                                <button type="submit" class="btn btn-primary">Confirmer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </header>
+        <div id="mediasContent">
+            <button type="button" class="btn btn-primary" id="seeMedias">Voir les médias</button>
+        </div>
         <div id="gallery">
             <div class="row">
                 {% for image in trick.images %}
-                    <div class="col-lg-2">
+                    <div class="col-sm-12 col-md-6 col-lg-3">
                         <a href="{{ asset('/uploads/images/' ~ image.name) }}" class="thumbnail" target="_blank">
                             <img src="{{ asset('/uploads/images/' ~ image.name) }}">
                         </a>
                     </div>
                 {% endfor %}
                 {% for video in trick.videos %}
-                    <div class="col-lg-2">
+                    <div class="col-sm-12 col-md-6 col-lg-3">
                         {{ video.code|raw }}
                     </div>
                 {% endfor %}
@@ -56,26 +88,35 @@
                 </div>
             </div>
         </div>
-        <hr>
+        <hr id="message">
         {% for message in app.flashes('success') %}
-        <div class="row justify-content-md-center">
-            <div class="col-8">
-                <div class="alert alert-success">
-                    {{ message }}
+            <div class="row justify-content-md-center">
+                <div class="col-9">
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
                 </div>
             </div>
-        </div>
+        {% endfor %}
+        {% for message in app.flashes('failure') %}
+            <div class="row justify-content-md-center">
+                <div class="col-9">
+                    <div class="alert alert-danger">
+                        {{ message }}
+                    </div>
+                </div>
+            </div>
         {% endfor %}
         {% if app.user %}
             {% if app.user.activated != 0%}
-                <form action="{{ path('app_message_create', {id: trick.id}) }}" method="post">
+                <form action="{{ path('app_message_create', {id: trick.id}) }}" method="post" id="messageForm">
                     <div class="form-group">
                         <div class="row justify-content-md-center">
-                            <div class="col-6">
+                            <div class="col-md-6">
                                 <textarea name="content" class="form-control" placeholder="Votre message" rows="5"></textarea>
                             </div>
-                            <div class="col-2">
-                                <button type="submit" class="btn btn-primary" style="width: 100%; position:absolute; top: 35%">Envoyer</button>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary">Envoyer</button>
                             </div>
                         </div>
                     </div>
@@ -97,7 +138,7 @@
                                     {% if message.user.avatar != null %}
                                         <img class="rounded-circle" src="{{ asset('/uploads/avatars/' ~ message.user.avatar) }}">
                                     {% else %}
-                                        <img class="rounded-circle" src="{{ asset('/images/userAvatarDefault') }}">
+                                        <img class="rounded-circle" src="{{ asset('/images/userAvatarDefault.jpg') }}">
                                     {% endif %}
                                 </div>
                                 <div class="col-lg-3">
@@ -148,6 +189,10 @@
                             $('#btn_more').html("Afficher plus <i class=\"fas fa-plus-circle\"></i>");
                         }
                     });
+                })
+                $(document).on('click', '#seeMedias', function () {
+                    $("#mediasContent").css("display", "none");
+                    $("#gallery").css("display", "inline");
                 })
             })
         </script>

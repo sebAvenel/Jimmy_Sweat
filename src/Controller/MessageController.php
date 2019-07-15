@@ -36,36 +36,35 @@ class MessageController extends Controller
 
     /**
      * @Route("/update/{id}")
-     * @param $id
+     * @param Message $message
      * @return RedirectResponse
      */
-    public function updateValidated($id): RedirectResponse
+    public function updateValidated(Message $message): RedirectResponse
     {
-        $message = $this->repository->find($id);
         $message->setValidated(1);
         $this->manager->flush();
+        $this->addFlash('successUpdateMessage', 'Le message a bien été validé');
 
         return $this->redirectToRoute('app_admin_message');
     }
 
     /**
      * @Route("/delete/{id}", methods="DELETE")
-     * @param $id
+     * @param Message $message
      * @param Request $request
      * @return RedirectResponse
      */
-    public function delete($id, Request $request): RedirectResponse
+    public function delete(Message $message, Request $request): RedirectResponse
     {
-        $message = $this->repository->find($id);
         if ($this->isCsrfTokenValid('delete' . $message->getId(), $request->get('_token'))) {
             $this->manager->remove($message);
             $this->manager->flush();
-            $this->addFlash('success', 'Le message ' . $message->getId() . ' a bien été supprimé');
+            $this->addFlash('success', 'Le message a bien été supprimé');
 
             return $this->redirectToRoute('app_admin_message');
         }
 
-        $this->addFlash('failure', 'Le message ' . $message->getId() . ' n\'a pas pu être supprimé');
+        $this->addFlash('failure', 'Le message n\'a pas pu être supprimé');
 
         return $this->redirectToRoute('app_admin_message');
     }
@@ -77,16 +76,23 @@ class MessageController extends Controller
      */
     public function create(Trick $trick): Response
     {
-        $user = $this->getUser();
-        $message = new Message();
-        $message
-            ->setContent($_POST['content'])
-            ->setTrick($trick)
-            ->setUser($user);
-        $this->manager->persist($message);
-        $this->manager->flush();
+        if (strlen($_POST['content']) < 10 || strlen($_POST['content']) > 500){
+            $this->addFlash('failure', 'Votre message doit comporter entre 10 et 500 caractères et le votre en comporte ' . strlen($_POST['content']) );
+            return $this->redirectToRoute('app_trick_show', ['_fragment' => 'message', 'id' => $trick->getId()]);
+        } else {
+            $user = $this->getUser();
+            $message = new Message();
+            $message
+                ->setContent($_POST['content'])
+                ->setTrick($trick)
+                ->setUser($user);
+            $this->manager->persist($message);
+            $this->manager->flush();
 
-        $this->addFlash('success', 'Votre message a bien été pris en compte, il sera prochainement validé ou supprimé par l\'un de nos modérateurs' );
+            $this->addFlash('success', 'Votre message a bien été pris en compte, il sera prochainement validé ou supprimé par l\'un de nos modérateurs' );
+            return $this->redirectToRoute('app_trick_show', ['_fragment' => 'message', 'id' => $trick->getId()]);
+        }
+
         return $this->redirectToRoute('app_trick_show', ['id' => $trick->getId()]);
     }
 

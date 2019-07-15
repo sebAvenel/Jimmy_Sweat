@@ -18,7 +18,7 @@ class TrickType extends AbstractType
         $builder
             ->add('name', TextType::class, ['label' => 'Nom'])
             ->add('description', TextareaType::class, ['attr' => ['rows' => 6]])
-            ->add('groups', null, ['label' => 'Groupe'])
+            ->add('groups', null, ['attr' => ['min' => 1, 'max' => 4], 'label' => 'Groupe'])
             ->add('videos', CollectionType::class, [
                 'entry_type' => VideoType::class,
                 'entry_options' => ['label' => false],

@@ -18,6 +18,11 @@
                 </div>
             {% endfor %}
             {% for trick in invalidTrickList %}
+            {% for message in app.flashes('successValidTrick') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
             <div class="card">
                 <div class="card-header" id="heading{{ trick.id }}">
                     <div class="row">
@@ -42,14 +47,14 @@
                             <div id="gallery">
                                 <div class="row">
                                     {% for image in trick.images %}
-                                        <div class="col-lg-2">
+                                        <div class="col-sm-12 col-md-6 col-lg-3">
                                             <a href="{{ asset('/uploads/images/' ~ image.name) }}" class="thumbnail" target="_blank">
                                                 <img src="{{ asset('/uploads/images/' ~ image.name) }}">
                                             </a>
                                         </div>
                                     {% endfor %}
                                     {% for video in trick.videos %}
-                                        <div class="col-lg-2">
+                                        <div class="col-sm-12 col-md-6 col-lg-3">
                                             {{ video.code|raw }}
                                         </div>
                                     {% endfor %}
@@ -61,7 +66,7 @@
                             <input type=button data-toggle="modal" data-target="#deleteTrick{{ trick.id }}" value="Supprimer" class="btn btn-danger"/>
                         </div>
                         <!-- Modal -->
-                        <div class="modal fade" id="deleteTrick{{ trick.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal fade" id="deleteTrick{{ trick.id }}">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-body">

@@ -1,4 +1,5 @@
 
+/src/Migrations
 .env
 
 ###> symfony/framework-bundle ###

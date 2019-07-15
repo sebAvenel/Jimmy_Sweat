@@ -7,6 +7,9 @@ a:hover, a:focus{
 nav ul,nav li{
     padding:0;
 }
+.main-menu{
+    margin-right: 20px;
+}
 nav.main-menu{
     position: absolute;
     position: fixed;
@@ -74,6 +77,12 @@ nav.main-menu:hover,nav.main-menu.expanded{
 nav.main-menu:hover .nav-text,nav.main-menu.expanded .nav-text{
     visibility:visible
 }
+.nav{
+    position: absolute;
+    margin-top: 145px;
+    width: 100%;
+    background-color: whitesmoke;
+}
 #header{
     width: 100%;
     position: fixed;
@@ -94,5 +103,15 @@ nav.main-menu:hover .nav-text,nav.main-menu.expanded .nav-text{
     margin-left: 10px;
     margin-right: 10px;
     border: 2px solid white;
+}
+@media (max-width: 1200px) {
+    .main-menu{
+        display: none;
+    }
+}
+@media (min-width: 1200px) {
+    .nav{
+        display: none;
+    }
 }
 
