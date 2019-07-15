@@ -28,9 +28,9 @@ Voici les principales fonctionnalités disponibles suivant les différents statu
 
 ## Contrôle du code
 
-La qualité du code a été validé par [Codacy](https://www.codacy.com/). Vous pouvez accéder au rapport de contrôle en cliquant sur le badge ci-dessous.
+La qualité du code a été validé par [Code climate](https://codeclimate.com/). Vous pouvez accéder au rapport de contrôle en cliquant sur le badge ci-dessous.
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/85789d7ac71148757183/maintainability)](https://codeclimate.com/github/sebAvenel/mon_blog/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/fbf68612b05bc8d9ce58/maintainability)](https://codeclimate.com/github/sebAvenel/jimmy_sweat/maintainability)
 
 ## Prérequis
 
