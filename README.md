@@ -74,6 +74,10 @@ Vous pouvez directement vous identifier en tant qu'utilisateur ou administrateur
       * Identifiant: testadmin@admin.com
       * Mot de passe: Testadmin01
 
+## Informations
+
+  * Important: L'image représentée par les données fictives ne doit pas être éffacée!
+
 ## Outils utilisés
 
   * [Symfony](https://symfony.com/)
