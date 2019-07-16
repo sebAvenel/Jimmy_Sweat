@@ -21,7 +21,7 @@ class MessageFixture extends Fixture implements DependentFixtureInterface
                 ->setUpdatedAt($faker->dateTime('now', null))
                 ->setValidated(rand(0, 1))
                 ->setTrick($this->getReference('trick-' . rand(0, 29)))
-                ->setUser($this->getReference('user-' . rand(0,99)));
+                ->setUser($this->getReference('user-' . rand(0,101)));
             $manager->persist($message);
         }
         // $product = new Product();

@@ -39,7 +39,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Regex(
-     *     pattern="#(?=.*[A-Z])(?=.*[a-z])(?=(.*[0-9]){2,}).{6,15}#",
+     *     pattern="#(?=.*[A-Z])(?=.*[a-z])(?=(.*[0-9]){2,}).{6,20}#",
      *     match=true,
      *     message="Votre mot de passe doit comporter entre 6 et 15 caractères dont au moins 1 majuscule et 2 chiffres")
      */
