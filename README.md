@@ -68,11 +68,11 @@ Php ainsi que Composer doivent être installés sur votre ordinateur afin de pou
 Le site apparaît sur votre écran.
 Vous pouvez directement vous identifier en tant qu'utilisateur ou administrateur:
   * Utilisateur:
-      Identifiant: testuser@user.com
-      Mot de passe: Testuser01
+      * Identifiant: testuser@user.com
+      * Mot de passe: Testuser01
   * Administrateur:
-      Identifiant: testadmin@admin.com
-      Mot de passe: Testadmin01
+      * Identifiant: testadmin@admin.com
+      * Mot de passe: Testadmin01
 
 ## Outils utilisés
 
