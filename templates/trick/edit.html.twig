@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title 'Edition utilisateur' %}
+{% block title 'Edition figure' %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/trick/edit.css') }}">
@@ -28,7 +28,7 @@
                         <select class="image-picker custom-select" name="firstImage">
                             <option selected value="null">Choisir une image à la une</option>
                             {% for image in images %}
-                                <option data-img-src="{{ asset('/uploads/images/' ~ image.name) }}" value="{{ image.name }}">{{ image.name }}</option>
+                                <option data-img-src="{{ asset('uploads/images/' ~ image.name) }}" value="{{ image.name }}">{{ image.name }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -51,7 +51,7 @@
                                     <div class="col-sm-12 col-md-6 col-lg-4 imageContent">
                                         {{ form_row(image.name) }}
                                         {{ form_row(image.file) }}
-                                        <img src="{{ asset('/uploads/images/' ~ image.vars.data.name) }}">
+                                        <img src="{{ asset('uploads/images/' ~ image.vars.data.name) }}">
                                     </div>
                                 {% endfor %}
                             </div>

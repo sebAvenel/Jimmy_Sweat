@@ -4,6 +4,8 @@
     <link rel="stylesheet" href="{{ asset('css/home/home.css') }}">
 {% endblock %}
 
+{% block title %} Accueil {% endblock %}
+
 {% set last_trick_id = '' %}
 
 {% block body %}
@@ -46,13 +48,13 @@
                     <div class="col-sm-12 col-md-6 col-lg-3">
                         <div class="card mb-3">
                             {% if trick.firstImage != null %}
-                                <img src="{{ asset('/uploads/images/' ~ trick.firstImage) }}">
+                                <img src="{{ asset('uploads/images/' ~ trick.firstImage) }}">
                             {% elseif trick.images|length > 0 %}
                                 {% set imagesArray = [] %}
                                 {% for image in trick.images %}
                                     {% set imagesArray = imagesArray|merge([image.name]) %}
                                 {% endfor %}
-                                <img src="{{ asset('/uploads/images/' ~ random(imagesArray)) }}">
+                                <img src="{{ asset('uploads/images/' ~ random(imagesArray)) }}">
                             {% else %}
                                 <img class="card-img-top" src="{{ asset('images/imgTrickDefault.jpg') }}">
                             {% endif %}

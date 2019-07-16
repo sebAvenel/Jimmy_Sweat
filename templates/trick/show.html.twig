@@ -4,6 +4,8 @@
     <link rel="stylesheet" href="{{ asset('css/trick/show.css') }}">
 {% endblock %}
 
+{% block title %}{{ trick.name }}{% endblock %}
+
 {% set last_message_id = '' %}
 
 {% set nb_valid_message = 0 %}
@@ -15,13 +17,13 @@
                 {{ trick.name }}
             </h1>
             {% if trick.firstImage != null %}
-                <img src="{{ asset('/uploads/images/' ~ trick.firstImage) }}">
+                <img src="{{ asset('uploads/images/' ~ trick.firstImage) }}">
             {% elseif trick.images|length > 0 %}
                 {% set imagesArray = [] %}
                 {% for image in trick.images %}
                     {% set imagesArray = imagesArray|merge([image.name]) %}
                 {% endfor %}
-                <img src="{{ asset('/uploads/images/' ~ random(imagesArray)) }}">
+                <img src="{{ asset('uploads/images/' ~ random(imagesArray)) }}">
             {% else %}
                 <img class="card-img-top" src="{{ asset('images/imgTrickDefault.jpg') }}">
             {% endif %}
@@ -62,8 +64,8 @@
             <div class="row">
                 {% for image in trick.images %}
                     <div class="col-sm-12 col-md-6 col-lg-3">
-                        <a href="{{ asset('/uploads/images/' ~ image.name) }}" class="thumbnail" target="_blank">
-                            <img src="{{ asset('/uploads/images/' ~ image.name) }}">
+                        <a href="{{ asset('uploads/images/' ~ image.name) }}" class="thumbnail" target="_blank">
+                            <img src="{{ asset('uploads/images/' ~ image.name) }}">
                         </a>
                     </div>
                 {% endfor %}
@@ -136,9 +138,9 @@
                             <div class="row" id="infoUser">
                                 <div class="col-lg-1">
                                     {% if message.user.avatar != null %}
-                                        <img class="rounded-circle" src="{{ asset('/uploads/avatars/' ~ message.user.avatar) }}">
+                                        <img class="rounded-circle" src="{{ asset('uploads/avatars/' ~ message.user.avatar) }}">
                                     {% else %}
-                                        <img class="rounded-circle" src="{{ asset('/images/userAvatarDefault.jpg') }}">
+                                        <img class="rounded-circle" src="{{ asset('images/userAvatarDefault.jpg') }}">
                                     {% endif %}
                                 </div>
                                 <div class="col-lg-3">
