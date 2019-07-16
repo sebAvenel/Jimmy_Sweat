@@ -62,7 +62,7 @@ Php ainsi que Composer doivent être installés sur votre ordinateur afin de pou
   * Renseigner l'URL suivante dans le navigateur:
       * 'http://localhost:8000/'
       * Ou directement via votre serveur local:
-          * Windows: localhost: http://localhost/jimmy_sweat/public/
+          * Windows: http://localhost/jimmy_sweat/public/
           * Mac: http://localhost:8888/jimmy_sweat/public/
       
 Le site apparaît sur votre écran.
