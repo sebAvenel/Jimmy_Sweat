@@ -133,7 +133,7 @@ class UserController extends Controller
             return $this->redirectToRoute('app_user_login');
         }
 
-        $this->addFlash('failureConfirmRegistration', 'Ce lien semble périmé, veuillez vous réinscrire');
+        $this->addFlash('failureConfirmRegistration', 'Vous avez déjà valider votre inscription, merci de vous authentifier');
         return $this->redirectToRoute('app_home_home');
     }
 
@@ -211,7 +211,7 @@ class UserController extends Controller
             return ['form' => $form->createView()];
         }
 
-        $this->addFlash('failureUpdatePassword', 'Ce lien semble périmé, veuillez renouveler votre demande de nouveau mot de passe');
+        $this->addFlash('failureUpdatePassword', 'Ce lien a déjà été utilisé, veuillez renouveler votre demande de nouveau mot de passe');
         return $this->redirectToRoute('app_home_home');
     }
 
