@@ -31,7 +31,7 @@
                 {% if app.user.activated != 0 %}
                     {% if app.user.role == 'admin' or trick.user.id == app.user.id %}
                         <p id="trickManagement">
-                            <a href="{{ path('app_trick_edit', {id: trick.id }) }}"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="{{ path('app_trick_edit', {id: trick.id, slug: trick.slug }) }}"><i class="fas fa-pencil-alt"></i></a>
                             <a href="#"><i class="far fa-trash-alt" data-toggle="modal" data-target="#deleteTrick{{ trick.id }}"></i></a>
                             {#<input type=button data-toggle="modal" data-target="#deleteTrick{{ trick.id }}" value="Supprimer" class="btn btn-danger"/>#}
                         </p>

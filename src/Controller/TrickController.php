@@ -85,7 +85,7 @@ class TrickController extends Controller
     }
 
     /**
-     * @Route("/show/{id}")
+     * @Route("/show/{slug}/{id}")
      * @param int $id
      * @Template()
      * @return array
@@ -98,7 +98,7 @@ class TrickController extends Controller
     }
 
     /**
-     * @Route("/edit/{id}")
+     * @Route("/edit/{slug}/{id}")
      * @Template()
      * @param Trick $trick
      * @param Request $request

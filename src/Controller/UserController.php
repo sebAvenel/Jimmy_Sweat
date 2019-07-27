@@ -216,7 +216,7 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/edit/{id}")
+     * @Route("/edit/{slug}/{id}")
      * @Template()
      * @param User $user
      * @param Request $request

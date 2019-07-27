@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "aalaap/faker-youtube": "^1.2",
+        "cocur/slugify": "^3.2",
         "doctrine/annotations": "^1.6",
         "fzaninotto/faker": "^1.8",
         "phpunit/phpunit": "^7.5",
