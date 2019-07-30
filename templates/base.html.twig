@@ -48,7 +48,7 @@
                                         {% if app.user.role == 'admin' %}
                                             <a class="dropdown-item" href="{{ path('app_admin_trick') }}">Admin</a>
                                         {% endif %}
-                                        <a class="dropdown-item" href="{{ path('app_user_edit', {id: app.user.id}) }}">Editer mon profil</a>
+                                        <a class="dropdown-item" href="{{ path('app_user_edit', {id: app.user.id, slug: app.user.slug}) }}">Editer mon profil</a>
                                         <a class="dropdown-item" href="{{ path('app_user_logout') }}">Se déconnecter</a>
                                     </div>
                                 </li>

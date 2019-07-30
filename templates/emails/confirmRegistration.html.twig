@@ -18,10 +18,9 @@
             Merci de vous êtes inscrit sur notre site.<br>
             Afin de confimer votre inscription, merci de cliquer sur le bouton suivant:<br><br>
 
-            <h2>{{ host }}</h2>
             {% if host == 'localhost:8888' %}
                 <a href="http://{{ host }}/user/confirmation_registration/{{ user.token }}"><button class="btn btn-primary">Valider mon inscription</button></a><br><br>
-            {% elseif host == 'localhost:8000' %}
+            {% else %}
                 <a href="http://{{ host }}/jimmy_sweat/public/user/confirmation_registration/{{ user.token }}"><button class="btn btn-primary">Valider mon inscription</button></a><br><br>
             {% endif %}
 

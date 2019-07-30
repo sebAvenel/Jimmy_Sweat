@@ -1,6 +1,8 @@
 
-/src/Migrations/
+src/Migrations*
 .env
+!public/uploads/images/bf4880c7471af0cec83c3d73df6a4d2a.jpeg
+public/uploads*
 
 ###> symfony/framework-bundle ###
 /.env.local
