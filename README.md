@@ -32,6 +32,18 @@ La qualité du code a été validé par [Code climate](https://codeclimate.com/)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/fbf68612b05bc8d9ce58/maintainability)](https://codeclimate.com/github/sebAvenel/jimmy_sweat/maintainability)
 
+## Informations 
+
+Une version en ligne est disponible. Pour y accéder, cliquez [ici](http://jimmysweat.ovh/).
+
+Vous pouvez directement vous identifier en tant qu'utilisateur ou administrateur:
+  * Utilisateur:
+      * Identifiant: testuser@user.com
+      * Mot de passe: Testuser01
+  * Administrateur:
+      * Identifiant: testadmin@admin.com
+      * Mot de passe: Testadmin01
+
 ## Prérequis
 
 Php ainsi que Composer doivent être installés sur votre ordinateur afin de pouvoir correctement lancé le blog.
