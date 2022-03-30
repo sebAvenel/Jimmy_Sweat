@@ -8,6 +8,9 @@
         "aalaap/faker-youtube": "^1.2",
         "cocur/slugify": "^3.2",
         "doctrine/annotations": "^1.6",
+        "doctrine/doctrine-bundle": "^1.11",
+        "doctrine/doctrine-migrations-bundle": "^3.0",
+        "doctrine/orm": "^2.7",
         "fzaninotto/faker": "^1.8",
         "phpunit/phpunit": "^7.5",
         "sensio/framework-extra-bundle": "^5.3",
@@ -19,7 +22,6 @@
         "symfony/flex": "^1.1",
         "symfony/form": "4.2.*",
         "symfony/framework-bundle": "4.2.*",
-        "symfony/orm-pack": "^1.0",
         "symfony/security-bundle": "4.2.*",
         "symfony/security-csrf": "4.2.*",
         "symfony/swiftmailer-bundle": "^3.2",
@@ -75,7 +77,8 @@
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.1",
         "symfony/maker-bundle": "^1.11",
-        "symfony/profiler-pack": "^1.0",
+        "symfony/stopwatch": "4.2.*",
+        "symfony/web-profiler-bundle": "4.2.*",
         "symfony/web-server-bundle": "4.2.*"
     }
 }
