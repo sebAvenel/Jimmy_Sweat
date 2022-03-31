@@ -131,32 +131,34 @@
         {% endif %}
         <hr>
         <div class="col-10 offset-1" id="messageList">
-            {% for message in trick.messages|reverse if message.validated == 1%}
-                {% if nb_valid_message < 4 %}
-                    <div class="row justify-content-md-center">
-                        <div id="messageContent" class="col-10">
-                            <div class="row" id="infoUser">
-                                <div class="col-lg-1">
-                                    {% if message.user.avatar != null %}
-                                        <img class="rounded-circle" src="{{ asset('uploads/avatars/' ~ message.user.avatar) }}">
-                                    {% else %}
-                                        <img class="rounded-circle" src="{{ asset('images/userAvatarDefault.jpg') }}">
-                                    {% endif %}
+            {% for message in trick.messages|reverse %}
+                {% if message.validated == 1 %}
+                    {% if nb_valid_message < 4 %}
+                        <div class="row justify-content-md-center">
+                            <div id="messageContent" class="col-10">
+                                <div class="row" id="infoUser">
+                                    <div class="col-lg-1">
+                                        {% if message.user.avatar != null %}
+                                            <img class="rounded-circle" src="{{ asset('uploads/avatars/' ~ message.user.avatar) }}">
+                                        {% else %}
+                                            <img class="rounded-circle" src="{{ asset('images/userAvatarDefault.jpg') }}">
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <p>{{ message.user.name }}</p>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <p>le {{ message.createdAt|date('d/m/Y à H:i:s') }}</p>
+                                    </div>
+                                    <br><br>
                                 </div>
-                                <div class="col-lg-3">
-                                    <p>{{ message.user.name }}</p>
-                                </div>
-                                <div class="col-lg-5">
-                                    <p>le {{ message.createdAt|date('d/m/Y à H:i:s') }}</p>
-                                </div>
-                                <br><br>
+                                <p>{{ message.content }}</p>
                             </div>
-                            <p>{{ message.content }}</p>
                         </div>
-                    </div>
-                    {% set nb_valid_message = nb_valid_message + 1 %}
-                    {% set last_message_id = message.id %}
-                {% endif %}
+                        {% set nb_valid_message = nb_valid_message + 1 %}
+                        {% set last_message_id = message.id %}
+                    {% endif %}
+                {% endif %}    
             {% endfor %}
         </div>
         {% if nb_valid_message >= 4 %}
