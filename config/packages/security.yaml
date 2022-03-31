@@ -1,25 +1,14 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        # in_memory: { memory: ~ }
-        from_database:
-            entity:
-                class: App\Entity\User
-                property: email
+        users_in_memory: { memory: null }
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             anonymous: true
-            #http_basic: true
-            form_login:
-                check_path: app_user_login
-                login_path: /user/login
-
-            logout:
-                path: app_user_logout
-                target: /
+            provider: users_in_memory
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -30,11 +19,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN }
-        #- { path: ^/profile, roles: ROLE_USER }
-
-    encoders:
-        App\Entity\User:
-            algorithm: bcrypt
-            cost: 12
-
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }
