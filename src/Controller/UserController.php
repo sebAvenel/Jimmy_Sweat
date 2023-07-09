@@ -154,7 +154,7 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/logout", methods={"GET"})
+     * @Route("/logout", name="app_logout", methods={"GET"})
      */
     public function logout()
     {

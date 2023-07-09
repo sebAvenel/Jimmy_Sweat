@@ -18,8 +18,8 @@ security:
                 login_path: app_user_login
                 check_path: app_user_login
             logout:
-                path: logout
-                target: homepage
+                path: app_logout
+                target: app_home_home
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

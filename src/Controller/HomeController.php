@@ -23,7 +23,7 @@ class HomeController extends Controller
     }
 
     /**
-     * @Route("/")
+     * @Route("/", name="app_home_home")
      * @Template()
      * @param Request $request
      * @param ContactNotification $notification
