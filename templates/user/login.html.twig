@@ -10,10 +10,8 @@
     <div class="container">
         <div id="form-content" class="col-lg-4 col-md-8 col-xs-10 offset-lg-4 offset-md-2 offset-xs-1">
             <h3>Se connecter</h3>
-            {% if error is defined and error != null%}
-                <div class="alert alert-danger">
-                    {{ error.messageKey | trans(error.messageData, 'security') }}
-                </div>
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
 
             {{ form_start(form)}}

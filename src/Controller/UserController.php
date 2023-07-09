@@ -138,7 +138,7 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/login")
+     * @Route("/login", name="app_user_login")
      * @Template()
      * @param AuthenticationUtils $authenticationUtils
      * @return array
