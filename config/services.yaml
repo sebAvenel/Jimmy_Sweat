@@ -27,3 +27,4 @@ services:
 
 parameters:
     trick_images_directory: '%kernel.project_dir%/public/uploads/tricks/images/'
+    avatar_images_directory: '%kernel.project_dir%/public/uploads/user/avatar_images/'

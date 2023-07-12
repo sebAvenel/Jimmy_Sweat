@@ -90,7 +90,7 @@ class MessageController extends Controller
             $this->manager->flush();
 
             $this->addFlash('success', 'Votre message a bien été pris en compte, il sera prochainement validé ou supprimé par l\'un de nos modérateurs' );
-            return $this->redirectToRoute('app_trick_show', ['_fragment' => 'message', 'id' => $trick->getId()]);
+            return $this->redirectToRoute('app_trick_show', ['_fragment' => 'message', 'slug' => $trick->getSlug(), 'id' => $trick->getId()]);
         }
 
         return $this->redirectToRoute('app_trick_show', ['id' => $trick->getId()]);

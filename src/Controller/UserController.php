@@ -231,7 +231,7 @@ class UserController extends Controller
             if ($user->getAvatar() != null){
                 $file = $user->getAvatar();
                 $fileName = md5(uniqid()).'.'.$file->guessExtension();
-                $avatars_directory = $this->getParameter('avatars_directory');
+                $avatars_directory = $this->getParameter('avatar_images_directory');
                 if ($avatarFile != null){
                     $this->filesystem->remove($avatars_directory . '/' . $avatarFile);
                 }

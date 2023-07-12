@@ -5,7 +5,7 @@
             <div class="row" id="infoUser">
                 <div class="col-lg-1">
                     {% if message.user.avatar != null %}
-                        <img class="rounded-circle" src="{{ asset('uploads/avatars/' ~ message.user.avatar) }}">
+                        <img class="rounded-circle" src="{{ asset('/uploads/user/avatar_images/' ~ message.user.avatar) }}">
                     {% else %}
                         <img class="rounded-circle" src="{{ asset('images/userAvatarDefault.jpg') }}">
                     {% endif %}

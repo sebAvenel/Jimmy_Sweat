@@ -19,7 +19,7 @@
                 {% if app.user.avatar == null%}
                     <img class="rounded-circle" id="avatar" src="{{ asset('images/userAvatarDefault.jpg') }}"/>
                 {% else %}
-                    <img class="rounded-circle" id="avatar" src="{{ asset('uploads/avatars/' ~ app.user.avatar ) }}"/>
+                    <img class="rounded-circle" id="avatar" src="{{ asset('uploads/user/avatar_images/' ~ app.user.avatar ) }}"/>
                 {% endif %}
                 {{ app.user.name }}
             {% endif %}
