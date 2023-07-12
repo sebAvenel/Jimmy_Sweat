@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\Trick;
 use App\Form\TrickType;
 use App\Repository\TrickRepository;
+use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\TrickService;
 
 /**
  * Class TrickController
@@ -31,18 +33,29 @@ class TrickController extends Controller
      * @var Filesystem
      */
     private $filesystem;
+    /**
+     * @var TrickService
+     */
+    private $service;
+    /**
+     * @var UserRepository
+     */
+    private $userRepository;
 
     /**
      * TrickController constructor.
      * @param TrickRepository $trickRepository
      * @param ObjectManager $manager
      * @param Filesystem $filesystem
+     * @param TrickService $service
      */
-    public function __construct(TrickRepository $trickRepository, ObjectManager $manager, Filesystem $filesystem)
+    public function __construct(TrickRepository $trickRepository, ObjectManager $manager, Filesystem $filesystem, TrickService $service, UserRepository $userRepository)
     {
         $this->trickRepository = $trickRepository;
         $this->manager = $manager;
         $this->filesystem = $filesystem;
+        $this->service = $service;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -106,18 +119,18 @@ class TrickController extends Controller
      */
     public function edit(Trick $trick, Request $request)
     {
-        $originalVideos = $trick->videosArrayMaker($trick);
-        $images_directory = $this->getParameter('images_directory');
-        $originalImages = $trick->imagesArrayMaker($trick, $images_directory);
+        $originalVideos = $this->service->videosArrayMaker($trick);
+        $images_directory = $this->getParameter('trick_images_directory');
+        $originalImages = $this->service->imagesArrayMaker($trick, $images_directory);
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
             if ($_POST['firstImage'] != 'null'){
                 $trick->setFirstImage($_POST['firstImage']);
             };
-            $trick->videosEraser($originalVideos, $trick, $this->manager);
-            $trick->imagesEraser($originalImages, $trick, $this->filesystem, $images_directory, $this->manager);
-            $trick->imagesManagement($trick, $images_directory);
+            $this->service->videosEraser($originalVideos, $trick, $this->manager);
+            $this->service->imagesEraser($originalImages, $trick, $this->filesystem, $images_directory, $this->manager);
+            $this->service->imagesManagement($trick, $images_directory);
             $trick->setValidated(0);
             $trick->setUpdatedAt(new \DateTime());
             $this->manager->flush();
@@ -136,13 +149,13 @@ class TrickController extends Controller
      */
     public function create(Request $request)
     {
-        $images_directory = $this->getParameter('images_directory');
         $trick = new Trick();
+        $images_directory = $this->getParameter('trick_images_directory');
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
             $trick->setUser($this->getUser());
-            $trick->imagesManagement($trick, $images_directory);
+            $this->service->imagesManagement($trick, $images_directory);
             $this->manager->persist($trick);
             $this->manager->flush();
 

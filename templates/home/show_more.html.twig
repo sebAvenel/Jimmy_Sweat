@@ -7,7 +7,7 @@
                 {% for image in trick.images %}
                     {% set imagesArray = imagesArray|merge([image.name]) %}
                 {% endfor %}
-                <img src="{{ asset('uploads/images/' ~ random(imagesArray)) }}">
+                <img src="{{ asset('uploads/tricks/images/' ~ random(imagesArray)) }}">
             {% else %}
                 <img class="card-img-top" src="{{ asset('images/imgTrickDefault.jpg') }}">
             {% endif %}

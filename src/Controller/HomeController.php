@@ -46,7 +46,7 @@ class HomeController extends Controller
     }
 
     /**
-     * @Route("/show_more")
+     * @Route("/show_more", name="app_home_showmore")
      * @Template()
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */

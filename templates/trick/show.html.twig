@@ -17,13 +17,13 @@
                 {{ trick.name }}
             </h1>
             {% if trick.firstImage != null %}
-                <img src="{{ asset('uploads/images/' ~ trick.firstImage) }}">
+                <img src="{{ asset('uploads/tricks/images/' ~ trick.firstImage) }}">
             {% elseif trick.images|length > 0 %}
                 {% set imagesArray = [] %}
                 {% for image in trick.images %}
                     {% set imagesArray = imagesArray|merge([image.name]) %}
                 {% endfor %}
-                <img src="{{ asset('uploads/images/' ~ random(imagesArray)) }}">
+                <img src="{{ asset('uploads/tricks/images/' ~ random(imagesArray)) }}">
             {% else %}
                 <img class="card-img-top" src="{{ asset('images/imgTrickDefault.jpg') }}">
             {% endif %}

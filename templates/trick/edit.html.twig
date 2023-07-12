@@ -28,7 +28,7 @@
                         <select class="image-picker custom-select" name="firstImage">
                             <option selected value="null">Choisir une image à la une</option>
                             {% for image in images %}
-                                <option data-img-src="{{ asset('uploads/images/' ~ image.name) }}" value="{{ image.name }}">{{ image.name }}</option>
+                                <option data-img-src="{{ asset('uploads/tricks/images/' ~ image.name) }}" value="{{ image.name }}">{{ image.name }}</option>
                             {% endfor %}
                         </select>
                     </div>
